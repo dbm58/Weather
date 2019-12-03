@@ -1,19 +1,15 @@
-<!--
-  Look into wrapping mat-icon
-
-  Maybe the last comment in https://stackoverflow.com/questions/36545478/angular-2-access-ng-content-within-component would be helpful?
--->
 <mat-sidenav-container class="example-container">
   <mat-sidenav opened mode="side" position="end">
     <div style="display:flex; flex-direction:column; height:100%;">
-      <a routerLink="/today" href="#"><mat-icon>home</mat-icon></a>
-      <a routerLink="/radar" href="#"><mat-icon>track_changes</mat-icon></a>
-      <a routerLink="/precip" href="#"><mat-icon>flash_on</mat-icon></a>
-      <a routerLink="/week" href="#"><mat-icon>calendar_today</mat-icon></a>
+      <app-nav-button routerLink="/today">home</app-nav-button>
+      <app-nav-button routerLink="/radar">track_changes</app-nav-button>
+      <app-nav-button routerLink="/precip">flash_on</app-nav-button>
+      <app-nav-button routerLink="/week">calendar_today</app-nav-button>
+      <app-nav-button routerLink="/radar">track_changes</app-nav-button>
 
       <div style="flex-grow:1;"></div>
 
-      <a routerLink="/setup" href="#"><mat-icon>settings_applications</mat-icon></a>
+      <app-nav-button routerLink="/setup">settings_applications</app-nav-button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>

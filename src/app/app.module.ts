@@ -11,6 +11,7 @@ import { TodayDetailForecastComponent } from './today-detail-forecast/today-deta
 import { TodayForecastComponent }       from './today-forecast/today-forecast.component';
 import { SetupComponent }               from './setup/setup.component';
 import { PrecipComponent }              from './precip/precip.component';
+import { NavButtonComponent } from './nav-button/nav-button.component';
 
 @NgModule({
   declarations:
@@ -21,7 +22,8 @@ import { PrecipComponent }              from './precip/precip.component';
     TodayDetailForecastComponent,
     TodayForecastComponent,
     SetupComponent,
-    PrecipComponent
+    PrecipComponent,
+    NavButtonComponent
   ],
   imports:
   [
