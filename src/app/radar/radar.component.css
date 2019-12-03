@@ -1,0 +1,32 @@
+/*
+ *  Stollen from: https://stackoverflow.com/questions/12923735/overlaying-multiple-png-images
+ */
+div { height:100%; width:100%; }
+.planetimage {
+    position: relative;
+}
+
+.planetimage .base {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index : 0;
+}
+
+.planetimage .overlay{
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+
+/*
+ * per the w3c:  https://www.w3.org/Style/Examples/007/center.en.html
+ *
+ * This doesn't work here, though, because we are absolute positioning in
+ * order to do the overlay.  So we probably have to do something to adjust
+ * this.  e.g., center the container?
+ *
+img { display:block; height:100%; margin-left:auto; margin-right:auto; }
+ *
+ * Other techniques for centering are here:  https://css-tricks.com/snippets/css/absolute-center-vertical-horizontal-an-image/
+ */
