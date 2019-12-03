@@ -10,6 +10,7 @@ import { WeeklyForecastComponent }      from './weekly-forecast/weekly-forecast.
 import { TodayDetailForecastComponent } from './today-detail-forecast/today-detail-forecast.component';
 import { TodayForecastComponent }       from './today-forecast/today-forecast.component';
 import { SetupComponent }               from './setup/setup.component';
+import { PrecipComponent }              from './precip/precip.component';
 
 @NgModule({
   declarations:
@@ -19,7 +20,8 @@ import { SetupComponent }               from './setup/setup.component';
     WeeklyForecastComponent,
     TodayDetailForecastComponent,
     TodayForecastComponent,
-    SetupComponent
+    SetupComponent,
+    PrecipComponent
   ],
   imports:
   [
