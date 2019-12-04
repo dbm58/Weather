@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule }      from '@angular/core';
 
+import { MomentModule }  from 'ngx-moment';
+
 import { AppRoutingModule }             from './app-routing.module';
 import { AppComponent }                 from './app.component';
 import { BrowserAnimationsModule }      from '@angular/platform-browser/animations';
@@ -11,7 +13,8 @@ import { TodayDetailForecastComponent } from './today-detail-forecast/today-deta
 import { TodayForecastComponent }       from './today-forecast/today-forecast.component';
 import { SetupComponent }               from './setup/setup.component';
 import { PrecipComponent }              from './precip/precip.component';
-import { NavButtonComponent } from './nav-button/nav-button.component';
+import { NavButtonComponent }           from './nav-button/nav-button.component';
+import { DateTimeTileComponent }        from './date-time-tile/date-time-tile.component';
 
 @NgModule({
   declarations:
@@ -23,14 +26,16 @@ import { NavButtonComponent } from './nav-button/nav-button.component';
     TodayForecastComponent,
     SetupComponent,
     PrecipComponent,
-    NavButtonComponent
+    NavButtonComponent,
+    DateTimeTileComponent
   ],
   imports:
   [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

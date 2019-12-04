@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import {
          MatButtonModule,
+         MatGridListModule,
          MatIconModule,
          MatSidenavModule
        } from '@angular/material';
 
-const MaterialComponents =
-      [
-        MatButtonModule,
-        MatIconModule,
-        MatSidenavModule
-      ];
+const  MaterialComponents =
+       [
+         MatButtonModule,
+         MatGridListModule,
+         MatIconModule,
+         MatSidenavModule
+       ];
 
 @NgModule({
   declarations: [ ],
