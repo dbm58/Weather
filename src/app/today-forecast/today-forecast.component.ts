@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ForecastDataService } from '../Services/forecast-data.service';
 
 @Component({
   selector: 'app-today-forecast',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodayForecastComponent implements OnInit {
 
-  constructor() { }
+  forecast;
+
+  constructor( private dataService: ForecastDataService ) { }
 
   ngOnInit() {
+    this.forecast = this.dataService.getForecast( );
   }
 
 }

@@ -1,3 +1,4 @@
 <a routerLink="{{routerLink}}" href="#">
-  <mat-icon><ng-content></ng-content></mat-icon>
+  <span *ngIf="fontIcon" [ngClass]="['wi', fontIcon]"></span>
+  <mat-icon *ngIf="!fontIcon"><ng-content></ng-content></mat-icon>
 </a>

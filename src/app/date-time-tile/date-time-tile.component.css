@@ -5,10 +5,12 @@
   text-align: center;
 }
 
-.date-time-tile-time {
-font-size: 15vmin;
+.date-time-tile-time
+{
+  font-size: 15vmin;
 }
-.date-time-tile-date {
-font-size: 5vmin;
-color: #CCCCCC;
+.date-time-tile-date
+{
+  font-size: 5vmin;
+  color: #CCCCCC;
 }

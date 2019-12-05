@@ -1,0 +1,43 @@
+div.container
+{
+  width: 100%;
+  text-align: center;
+}
+
+.wi.icon
+{
+  font-size: 30vmin;
+  padding-left: 10vmin;
+}
+
+.temp
+{
+  font-size: 30vmin;
+  margin-top: 5vmin;
+}
+
+div.temp-min-max
+{
+  margin-top: 2vmin;
+  font-size: 4vmin;
+}
+
+div.wind
+{
+  font-size:  4vmin;
+  margin-top: 2vmin;
+}
+
+div.wind span.wi
+{
+  font-size: 4vmin;
+}
+
+.precip
+{
+  font-size: 4vmin;
+  margin-top: 2vmin;
+}
+
+a { color:inherit; text-decoration: none; }
+

@@ -1,15 +1,21 @@
+
+
 mat-sidenav-container
 {
   height: 100%;
+  background-color: inherit;
+  color: white;
 }
 
+/*
 mat-sidenav-content
 {
   padding: 16px;
 }
+*/
 
 mat-sidenav
 {
-  background-color: lightcoral;
+  background-color: silver;
   #width: 200px;
 }

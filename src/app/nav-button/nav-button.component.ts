@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatIconRegistry } from '@angular/material';
 
 @Component({
   selector: 'app-nav-button',
@@ -8,8 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NavButtonComponent implements OnInit {
 
   @Input( ) routerLink;
+  @Input( ) fontIcon;
 
-  constructor() { }
+  constructor( public matIconRegistry: MatIconRegistry )
+  {
+    matIconRegistry.registerFontClassAlias ('wi');
+  }
 
   ngOnInit() {
   }

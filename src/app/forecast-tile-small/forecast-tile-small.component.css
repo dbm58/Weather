@@ -1,0 +1,36 @@
+div.container
+{
+  width: 100%;
+  text-align: center;
+}
+
+div.wi
+{
+  font-size: 5vmin;
+  margin-top: 1vmin;
+}
+
+div.temp
+{
+  font-size:  2vmin;
+  margin-top: 1vmin;
+}
+
+div.wind
+{
+  margin-top: 1vmin;
+  font-size: 2vmin;
+}
+
+div.wind span.wi
+{
+  font-size: 2vmin;
+}
+
+div.precip
+{
+  margin-top: 1vmin;
+  font-size: 2vmin;
+}
+
+a { color:inherit; text-decoration: none; }
