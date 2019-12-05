@@ -18,7 +18,7 @@
                       'wi',
                       forecast.precipType == 'rain'    ? 'wi-raindrops'
                       : forecast.precipType == 'snow'  ? 'wi-snowflake-cold'
-                      : forecast.precipType == 'sleet' ? ''
+                      : forecast.precipType == 'sleet' ? 'wi-sleet'
                       : ''
                     ]"> {{forecast.precipProbability * 100 | number:'1.0-0'}}% <span *ngIf="forecast.precipAccumulation">({{forecast.precipAccumulation}}in)</span></div>
   </a>
