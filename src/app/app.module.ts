@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule }      from '@angular/core';
 
 import { MomentModule }  from 'ngx-moment';
+import { ChartsModule }  from 'ng2-charts';
 
 import { AppRoutingModule }             from './app-routing.module';
 import { AppComponent }                 from './app.component';
@@ -20,6 +21,11 @@ import { ForecastTileSmallComponent }   from './forecast-tile-small/forecast-til
 import { BlitzMapComponent }            from './blitz-map/blitz-map.component';
 import { ConditionIconPipe }            from './Pipes/condition-icon.pipe';
 
+import { ChartsComponent }           from './charts/charts.component';
+import { TemperatureChartComponent } from './charts/temperature-chart/temperature-chart.component';
+import { WindChartComponent }        from './charts/wind-chart/wind-chart.component';
+import { PrecipChartComponent }      from './charts/precip-chart/precip-chart.component';
+
 @NgModule({
   declarations:
   [
@@ -36,6 +42,10 @@ import { ConditionIconPipe }            from './Pipes/condition-icon.pipe';
     ForecastTileSmallComponent,
     BlitzMapComponent,
     ConditionIconPipe,
+    ChartsComponent,
+    TemperatureChartComponent,
+    WindChartComponent,
+    PrecipChartComponent,
   ],
   imports:
   [
@@ -43,7 +53,8 @@ import { ConditionIconPipe }            from './Pipes/condition-icon.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MomentModule
+    MomentModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

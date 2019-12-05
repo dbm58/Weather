@@ -6,6 +6,7 @@ import {
 
 import { NoaaMapComponent }             from './noaa-map/noaa-map.component';
 import { BlitzMapComponent }            from './blitz-map/blitz-map.component';
+import { ChartsComponent }              from './charts/charts.component';
 import { PrecipComponent }              from './precip/precip.component';
 import { WeeklyForecastComponent }      from './weekly-forecast/weekly-forecast.component';
 import { TodayDetailForecastComponent } from './today-detail-forecast/today-detail-forecast.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'today-detail', component: TodayDetailForecastComponent },
   { path: 'setup',        component: SetupComponent               },
   { path: 'week',         component: WeeklyForecastComponent      },
+  { path: 'charts',       component: ChartsComponent              },
   { path: '',
     redirectTo: '/today',
     pathMatch: 'full'
