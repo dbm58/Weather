@@ -15,9 +15,10 @@ import { SetupComponent }               from './setup/setup.component';
 import { PrecipComponent }              from './precip/precip.component';
 import { NavButtonComponent }           from './nav-button/nav-button.component';
 import { DateTimeTileComponent }        from './date-time-tile/date-time-tile.component';
-import { ForecastTileComponent } from './forecast-tile/forecast-tile.component';
-import { ForecastTileSmallComponent } from './forecast-tile-small/forecast-tile-small.component';
-import { BlitzMapComponent } from './blitz-map/blitz-map.component';
+import { ForecastTileComponent }        from './forecast-tile/forecast-tile.component';
+import { ForecastTileSmallComponent }   from './forecast-tile-small/forecast-tile-small.component';
+import { BlitzMapComponent }            from './blitz-map/blitz-map.component';
+import { ConditionIconPipe }            from './Pipes/condition-icon.pipe';
 
 @NgModule({
   declarations:
@@ -33,7 +34,8 @@ import { BlitzMapComponent } from './blitz-map/blitz-map.component';
     DateTimeTileComponent,
     ForecastTileComponent,
     ForecastTileSmallComponent,
-    BlitzMapComponent
+    BlitzMapComponent,
+    ConditionIconPipe,
   ],
   imports:
   [

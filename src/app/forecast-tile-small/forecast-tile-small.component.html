@@ -1,7 +1,9 @@
 <div class="container">
   <a href="#">
     <div class="day">{{forecast.time | amFromUnix | amDateFormat: 'dddd'}}</div>
-    <div [ngClass]="['wi', 'wi-dark-sky-' + forecast.icon]"></div>
+    <div matTooltip="{{forecast.summary}}"
+         matTooltipPosition="above"
+         [ngClass]="['wi', 'wi-dark-sky-' + forecast.icon]"></div>
     <div class="temp">
       {{forecast.temperatureLow | number:'1.0-0'}}&#176; - 
       {{forecast.temperatureHigh | number:'1.0-0'}}&#176;
@@ -11,14 +13,13 @@
       <span [ngClass]="['wi', 'wi-wind', 'towards-' + forecast.windBearing + '-deg']"> </span>
       Gusts {{forecast.windGust | number:'1.0-0'}}
     </div>
-    <div [ngClass]="[
-                      'precip',
-                      'wi',
-                      forecast.precipType == 'rain'    ? 'wi-raindrops'
-                      : forecast.precipType == 'snow'  ? 'wi-snowflake-cold'
-                      : forecast.precipType == 'sleet' ? 'wi-sleet'
-                      : ''
-                    ]"> {{forecast.precipProbability * 100 | number:'1.0-0'}}% <span *ngIf="forecast.precipAccumulation">({{forecast.precipAccumulation}}in)</span></div>
+    <div class="precip wi {{forecast.precipType | conditionIcon}}"
+         matTooltip="{{forecast.precipType | titlecase}}"
+         matTooltipPosition="above"
+         >
+      {{forecast.precipProbability * 100 | number:'1.0-0'}}%
+      <span *ngIf="forecast.precipAccumulation">({{forecast.precipAccumulation}}in)</span>
+    </div>
   </a>
 </div>
 
