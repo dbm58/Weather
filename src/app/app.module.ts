@@ -1,62 +1,64 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule }      from '@angular/core';
 
-import { MomentModule }  from 'ngx-moment';
 import { ChartsModule }  from 'ng2-charts';
+import { MomentModule }  from 'ngx-moment';
 
-import { AppRoutingModule }             from './app-routing.module';
 import { AppComponent }                 from './app.component';
+import { AppRoutingModule }             from './app-routing.module';
+import { BlitzMapComponent }            from './blitz-map/blitz-map.component';
 import { BrowserAnimationsModule }      from '@angular/platform-browser/animations';
-import { MaterialModule }               from './material/material.module';
-import { NoaaMapComponent }             from './noaa-map/noaa-map.component';
-import { WeeklyForecastComponent }      from './weekly-forecast/weekly-forecast.component';
-import { TodayDetailForecastComponent } from './today-detail-forecast/today-detail-forecast.component';
-import { TodayForecastComponent }       from './today-forecast/today-forecast.component';
-import { SetupComponent }               from './setup/setup.component';
-import { PrecipComponent }              from './precip/precip.component';
-import { NavButtonComponent }           from './nav-button/nav-button.component';
+import { BusComponent }                 from './bus/bus.component';
+import { ChartsComponent }              from './charts/charts.component';
+import { ConditionIconPipe }            from './Pipes/condition-icon.pipe';
 import { DateTimeTileComponent }        from './date-time-tile/date-time-tile.component';
 import { ForecastTileComponent }        from './forecast-tile/forecast-tile.component';
 import { ForecastTileSmallComponent }   from './forecast-tile-small/forecast-tile-small.component';
-import { BlitzMapComponent }            from './blitz-map/blitz-map.component';
-import { ConditionIconPipe }            from './Pipes/condition-icon.pipe';
-
-import { ChartsComponent }           from './charts/charts.component';
-import { TemperatureChartComponent } from './charts/temperature-chart/temperature-chart.component';
-import { WindChartComponent }        from './charts/wind-chart/wind-chart.component';
-import { PrecipChartComponent }      from './charts/precip-chart/precip-chart.component';
+import { InfoComponent }                from './info/info.component';
+import { MaterialModule }               from './material/material.module';
+import { NavButtonComponent }           from './nav-button/nav-button.component';
+import { NoaaMapComponent }             from './noaa-map/noaa-map.component';
+import { PrecipChartComponent }         from './charts/precip-chart/precip-chart.component';
+import { PrecipComponent }              from './precip/precip.component';
+import { TemperatureChartComponent }    from './charts/temperature-chart/temperature-chart.component';
+import { TodayDetailForecastComponent } from './today-detail-forecast/today-detail-forecast.component';
+import { TodayForecastComponent }       from './today-forecast/today-forecast.component';
+import { WeeklyForecastComponent }      from './weekly-forecast/weekly-forecast.component';
+import { WindChartComponent }           from './charts/wind-chart/wind-chart.component';
 
 @NgModule({
   declarations:
   [
     AppComponent,
-    NoaaMapComponent,
-    WeeklyForecastComponent,
-    TodayDetailForecastComponent,
-    TodayForecastComponent,
-    SetupComponent,
-    PrecipComponent,
-    NavButtonComponent,
+    BlitzMapComponent,
+    BusComponent,
+    ChartsComponent,
+    ConditionIconPipe,
     DateTimeTileComponent,
     ForecastTileComponent,
     ForecastTileSmallComponent,
-    BlitzMapComponent,
-    ConditionIconPipe,
-    ChartsComponent,
-    TemperatureChartComponent,
-    WindChartComponent,
+    InfoComponent,
+    NavButtonComponent,
+    NoaaMapComponent,
     PrecipChartComponent,
+    PrecipComponent,
+    TemperatureChartComponent,
+    TodayDetailForecastComponent,
+    TodayForecastComponent,
+    WeeklyForecastComponent,
+    WindChartComponent,
   ],
   imports:
   [
-    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    ChartsModule,
     MaterialModule,
     MomentModule,
-    ChartsModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+
