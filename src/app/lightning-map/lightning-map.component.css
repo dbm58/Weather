@@ -1,0 +1,19 @@
+iframe
+{
+  /*
+   * overflow is actually getting set on the mat-sidenav-content.  Which means
+   * that we can't control it here.  There has to be some way...  Maybe we
+   * should disable overflow at mat-sidenav-content, and require the pages to
+   * control their own overflow?
+   *
+   * The problem with using the 99.6% height is twofold:  first, there is a 
+   * small stip at the bottom of the screen that looks bad; second, I 
+   * suspect that this will fail due to rounding error at some resolutions.
+   */
+  overflow: hidden;
+  height:   99.6%;
+  width:    100%;
+  margin:   0px;
+  padding:  0px;
+  border:   none; 
+}

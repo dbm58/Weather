@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlitzMapComponent } from './blitz-map.component';
+import { LightningMapComponent } from './lightning-map.component';
 
-describe('BlitzMapComponent', () => {
-  let component: BlitzMapComponent;
-  let fixture: ComponentFixture<BlitzMapComponent>;
+describe('LightningMapComponent', () => {
+  let component: LightningMapComponent;
+  let fixture: ComponentFixture<LightningMapComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BlitzMapComponent ]
+      declarations: [ LightningMapComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BlitzMapComponent);
+    fixture = TestBed.createComponent(LightningMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

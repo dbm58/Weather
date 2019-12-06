@@ -6,7 +6,6 @@ import { MomentModule }  from 'ngx-moment';
 
 import { AppComponent }                 from './app.component';
 import { AppRoutingModule }             from './app-routing.module';
-import { BlitzMapComponent }            from './blitz-map/blitz-map.component';
 import { BrowserAnimationsModule }      from '@angular/platform-browser/animations';
 import { BusComponent }                 from './bus/bus.component';
 import { ChartsComponent }              from './charts/charts.component';
@@ -15,6 +14,7 @@ import { DateTimeTileComponent }        from './date-time-tile/date-time-tile.co
 import { ForecastTileComponent }        from './forecast-tile/forecast-tile.component';
 import { ForecastTileSmallComponent }   from './forecast-tile-small/forecast-tile-small.component';
 import { InfoComponent }                from './info/info.component';
+import { LightningMapComponent }        from './lightning-map/lightning-map.component';
 import { MaterialModule }               from './material/material.module';
 import { NavButtonComponent }           from './nav-button/nav-button.component';
 import { NoaaMapComponent }             from './noaa-map/noaa-map.component';
@@ -30,7 +30,6 @@ import { WindChartComponent }           from './charts/wind-chart/wind-chart.com
   declarations:
   [
     AppComponent,
-    BlitzMapComponent,
     BusComponent,
     ChartsComponent,
     ConditionIconPipe,
@@ -38,6 +37,7 @@ import { WindChartComponent }           from './charts/wind-chart/wind-chart.com
     ForecastTileComponent,
     ForecastTileSmallComponent,
     InfoComponent,
+    LightningMapComponent,
     NavButtonComponent,
     NoaaMapComponent,
     PrecipChartComponent,
