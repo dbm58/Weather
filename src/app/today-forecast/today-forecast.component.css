@@ -1,3 +1,13 @@
+mat-grid-list
+{
+  overflow: hidden;
+}
+
+mat-grid-tile.today
+{
+  background-color:#00002a;
+}
+
 mat-grid-tile
 {
   xbackground-color: pink;  /*  for testing  */

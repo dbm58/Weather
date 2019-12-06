@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import MockData from "./mock.data.json";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ForecastDataService {
+export class ForecastDataService
+{
+  data;
 
-  constructor() { }
+  constructor( private http: HttpClient ) { }
 
-  getForecast( ) { return MockData; }
+  getForecast( )
+  {
+    return this.http.get( 'http://localhost:3000/forecast' );
+  }
 }

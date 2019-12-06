@@ -13,8 +13,6 @@ import { ForecastDataService } from '../../Services/forecast-data.service';
 })
 export class TemperatureChartComponent implements OnInit
 {
-  data;
-
   lineChartData: ChartDataSets[];
   lineChartLabels: Label[];
 
@@ -127,15 +125,22 @@ export class TemperatureChartComponent implements OnInit
   lineChartType = 'line';
   lineChartPlugins = [];
 
+  fromUnix = ( x )    => ( new FromUnixPipe( ) ).transform( x );
+  format   = ( x, y ) => ( new DateFormatPipe( ) ).transform( x, y );
+
   constructor( private dataService: ForecastDataService )
   {
-    var fromUnix  = ( x )    => ( new FromUnixPipe( ) ).transform( x );
-    var format    = ( x, y ) => ( new DateFormatPipe( ) ).transform( x, y );
+    dataService.getForecast( )
+               .subscribe( ( data ) => this.buildGraph( data ) );
+  }
 
-    this.data = dataService.getForecast( );
-    var hourly = this.data.hourly.data.filter( (_,i) => i < 24 );
+  ngOnInit() { }
 
-    this.lineChartLabels = hourly.map( x => format( fromUnix( x.time ), 'HH') );
+  buildGraph( data )
+  {
+    var hourly = data.hourly.data.filter( (_,i) => i < 24 );
+
+    this.lineChartLabels = hourly.map( x => this.format( this.fromUnix( x.time ), 'HH') );
 
     this.lineChartData =
     [
@@ -151,6 +156,4 @@ export class TemperatureChartComponent implements OnInit
       }
     ];
   }
-
-  ngOnInit() { }
 }

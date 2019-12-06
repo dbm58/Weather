@@ -12,8 +12,12 @@ export class TodayForecastComponent implements OnInit {
 
   constructor( private dataService: ForecastDataService ) { }
 
-  ngOnInit() {
-    this.forecast = this.dataService.getForecast( );
+  ngOnInit()
+  {
+    this.dataService.getForecast( )
+                    .subscribe(
+                                ( data ) => this.forecast = data
+                              );
   }
 
 }

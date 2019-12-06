@@ -1,17 +1,12 @@
-<mat-grid-list cols="10" rowHeight="24.9%" style="overflow:hidden;">
-  <mat-grid-tile colspan=6 rowspan=3 style="background-color:#00002a;">
+<mat-grid-list *ngIf="forecast" cols="10" rowHeight="24.9%">
+  <mat-grid-tile class="today" colspan=6 rowspan=3>
     <app-forecast-tile [conditions]="forecast.currently"
                        [forecast]="forecast.daily.data[0]"
                        ></app-forecast-tile>
   </mat-grid-tile>
-  <mat-grid-tile colspan=4 rowspan=3><app-date-time-tile></app-date-time-tile></mat-grid-tile>
-  <!--
-  <mat-grid-tile colspan=2>day</mat-grid-tile>
-  <mat-grid-tile colspan=2>day</mat-grid-tile>
-  <mat-grid-tile colspan=2>day</mat-grid-tile>
-  <mat-grid-tile colspan=2>day</mat-grid-tile>
-  <mat-grid-tile colspan=2>day</mat-grid-tile>
-  -->
+  <mat-grid-tile colspan=4 rowspan=3>
+    <app-date-time-tile></app-date-time-tile>
+  </mat-grid-tile>
   <mat-grid-tile *ngFor='let day of [1,2,3,4,5]' colspan=2>
     <app-forecast-tile-small [forecast]="forecast.daily.data[day]">
     </app-forecast-tile-small>

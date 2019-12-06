@@ -13,8 +13,6 @@ import { ForecastDataService } from '../../Services/forecast-data.service';
 })
 export class WindChartComponent implements OnInit
 {
-  data;
-
   lineChartData:   ChartDataSets[];
   lineChartLabels: Label[];
 
@@ -78,15 +76,21 @@ export class WindChartComponent implements OnInit
   lineChartType = 'line';
   lineChartPlugins = [];
 
+  fromUnix = ( x )    => ( new FromUnixPipe( ) ).transform( x );
+
   constructor( private dataService: ForecastDataService )
   {
-    var fromUnix  = ( x )    => ( new FromUnixPipe( ) ).transform( x );
-    var format    = ( x, y ) => ( new DateFormatPipe( ) ).transform( x, y );
+    this.data = dataService.getForecast( )
+                           .subscribe( ( data ) => this.buildGraph( data ) );
+  }
+  
+  ngOnInit() { }
 
-    this.data = dataService.getForecast( );
-    var hourly = this.data.hourly.data.filter( (_,i) => i < 24 );
+  buildGraph( data )
+  {
+    var hourly = data.hourly.data.filter( (_,i) => i < 24 );
 
-    this.lineChartLabels = hourly.map( x => fromUnix( x.time ) );
+    this.lineChartLabels = hourly.map( x => this.fromUnix( x.time ) );
 
     var pointImage = new Image( 30, 30 );
     pointImage.src = './assets/wi-wind-deg.svg';
@@ -109,6 +113,4 @@ export class WindChartComponent implements OnInit
       }
     ];
   }
-  
-  ngOnInit() { }
 }
