@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
-import { DateFormatPipe, FromUnixPipe }  from 'ngx-moment';
+import { ChartDataSets, ChartOptions }  from 'chart.js';
+import { Color, Label }                 from 'ng2-charts';
+import { DateFormatPipe, FromUnixPipe } from 'ngx-moment';
 
 import { ForecastDataService } from '../../Services/forecast-data.service';
 
 @Component({
-  selector: 'app-wind-chart',
+  selector:    'app-wind-chart',
   templateUrl: './wind-chart.component.html',
-  styleUrls: ['./wind-chart.component.css']
+  styleUrls:   ['./wind-chart.component.css']
 })
 export class WindChartComponent implements OnInit
 {
@@ -18,18 +18,11 @@ export class WindChartComponent implements OnInit
 
   lineChartOptions: object =
   {
-    responsive: true,
+    legend: { display: false },
+
     maintainAspectRatio: false,
 
-    title:
-    {
-      position:  'bottom',
-      fontColor: 'black',
-      display:   true,
-      text:      'Wind Speed'
-    },
-
-    legend: { display: false },
+    responsive: true,
 
     scales:
     {
@@ -46,6 +39,14 @@ export class WindChartComponent implements OnInit
       ]
     },
 
+    title:
+    {
+      position:  'bottom',
+      fontColor: 'black',
+      display:   true,
+      text:      'Wind Speed'
+    },
+
     tooltips :
     {
       callbacks:
@@ -58,18 +59,13 @@ export class WindChartComponent implements OnInit
           return label;
         }
       }
-    }
+    },
   };
 
   lineChartColors: Color[] =
   [
-    {
-      borderColor:     'silver',
-      backgroundColor: 'rgba(255,0,0,0.3)',
-    },
-    {
-      borderColor: 'lightgray',
-    }
+    { borderColor: 'silver',    },
+    { borderColor: 'lightgray', }
   ];
 
   lineChartLegend = true;
@@ -80,8 +76,8 @@ export class WindChartComponent implements OnInit
 
   constructor( private dataService: ForecastDataService )
   {
-    this.data = dataService.getForecast( )
-                           .subscribe( ( data ) => this.buildGraph( data ) );
+    dataService.getForecast( )
+               .subscribe( ( data ) => this.buildGraph( data ) );
   }
   
   ngOnInit() { }
@@ -98,18 +94,22 @@ export class WindChartComponent implements OnInit
     this.lineChartData =
     [
       {
-        data: hourly.map( x => x.windSpeed ),
-        fill: false,
-        label: 'Wind Speed',
-        hitRadius: 20,
+        data:       hourly.map( x => x.windSpeed ),
+        fill:       false,
+        label:      'Wind Speed',
+        hitRadius:  20,
         pointStyle: pointImage,
-        rotation: hourly.map( x => x.windBearing ),
+        rotation:   hourly.map( x => x.windBearing ),
       },
       {
-        data: hourly.map( x => x.windGust != x.windSpeed ? x.windGust : null ),
-        fill: false,
-        label: 'Wind Gust',
-        hitRadius: 20
+        data:       hourly.map(
+                                x => x.windGust != x.windSpeed
+                                                 ? x.windGust 
+                                                 : null 
+                              ),
+        fill:       false,
+        label:      'Wind Gust',
+        hitRadius:  20
       }
     ];
   }

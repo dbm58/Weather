@@ -1,26 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
-import { DateFormatPipe, FromUnixPipe }  from 'ngx-moment';
+import { ChartDataSets, ChartOptions }  from 'chart.js';
+import { Color, Label }                 from 'ng2-charts';
+import { DateFormatPipe, FromUnixPipe } from 'ngx-moment';
 
 import { ForecastDataService } from '../../Services/forecast-data.service';
 
 @Component({
-  selector: 'app-precip-chart',
+  selector:    'app-precip-chart',
   templateUrl: './precip-chart.component.html',
-  styleUrls: ['./precip-chart.component.css']
+  styleUrls:   ['./precip-chart.component.css']
 })
 export class PrecipChartComponent implements OnInit
 {
-  lineChartData: ChartDataSets[ { data: [ 1, 2 ] } ];
-  lineChartLabels: Label[];
+  lineChartData:    ChartDataSets[ ];
+  lineChartLabels:  Label[];
+
   lineChartOptions: object =
   {
-    responsive: true,
+    legend: { display: false },
+
     maintainAspectRatio: false,
+
+    responsive: true,
+
     scales:
     {
+      xAxes:
+      [
+        {
+          type: 'time',
+          time:
+          {
+            unit: 'hour',
+            displayFormats: { hour: 'HH' }
+          }
+        }
+      ],
+
       yAxes:
       [
         {
@@ -34,6 +51,7 @@ export class PrecipChartComponent implements OnInit
         }
       ]
     },
+
     title:
     {
       position:  'bottom',
@@ -41,26 +59,32 @@ export class PrecipChartComponent implements OnInit
       display:   true,
       text:      'Precipitation Probability'
     },
-    legend: { display: false }
+
+    tooltips :
+    {
+      callbacks:
+      {
+        label: ( tooltipItem, data ) =>
+        {
+          let prob  = data.datasets[0].data[tooltipItem.index];
+          let label = 'Precipitation probability ' + prob + "%";
+          return label;
+        }
+      }
+    },
   };
 
-  public lineChartColors: Color[] =
+  lineChartColors: Color[] =
   [
-    {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,0,0,0.3)',
-    },
-    {
-      borderColor: 'lightgray',
-    }
+    { borderColor: 'black'     },
+    { borderColor: 'lightgray' },
   ];
 
   lineChartLegend  = true;
   lineChartType    = 'line';
   lineChartPlugins = [];
 
-  fromUnix  = ( x )    => ( new FromUnixPipe( ) ).transform( x );
-  format    = ( x, y ) => ( new DateFormatPipe( ) ).transform( x, y );
+  fromUnix = ( x ) => ( new FromUnixPipe( ) ).transform( x );
 
   constructor( private dataService: ForecastDataService )
   {
@@ -74,15 +98,15 @@ export class PrecipChartComponent implements OnInit
   {
     var hourly = data.hourly.data.filter( (_,i) => i < 24 );
 
-    this.lineChartLabels
-      = hourly.map( x => this.format( this.fromUnix( x.time ), 'HH') );
+    this.lineChartLabels = hourly.map( x => this.fromUnix( x.time ) );
 
     this.lineChartData =
     [
       {
-        data: hourly.map( x => x.precipProbability * 100 ),
-        fill: false,
-        label: null
+        data:      hourly.map( x => x.precipProbability * 100 ),
+        fill:      false,
+        label:     null, 
+        hitRadius: 20,
       }
     ];
   }
