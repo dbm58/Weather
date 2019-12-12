@@ -24,6 +24,7 @@ import { PrecipChartComponent }       from './charts/precip-chart/precip-chart.c
 import { PrecipComponent }            from './precip/precip.component';
 import { TemperatureChartComponent }  from './charts/temperature-chart/temperature-chart.component';
 import { WindChartComponent }         from './charts/wind-chart/wind-chart.component';
+import { CitationComponent } from './info/citation/citation.component';
 
 @NgModule({
   declarations:
@@ -44,6 +45,7 @@ import { WindChartComponent }         from './charts/wind-chart/wind-chart.compo
     PrecipComponent,
     TemperatureChartComponent,
     WindChartComponent,
+    CitationComponent,
   ],
   imports:
   [

@@ -1,0 +1,15 @@
+p.citation
+{
+  margin-left:   4vmin;
+}
+
+p.citation span
+{
+  float: left;
+  width: 20vmin;
+}
+
+p.citation a
+{
+  color: white;
+}

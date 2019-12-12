@@ -1,0 +1,23 @@
+.info-container
+{
+  padding: 4vmin;
+}
+
+.info-container a
+{
+  color: white;
+}
+
+.mat-display-4
+{
+  width:         100%;
+  margin-bottom: 0px;
+  margin-top:    4px;
+}
+
+.mat-display-2
+{
+  margin-top:    4vmin;
+  margin-bottom: 0px;
+}
+
