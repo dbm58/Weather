@@ -25,6 +25,7 @@ import { PrecipComponent }            from './precip/precip.component';
 import { TemperatureChartComponent }  from './charts/temperature-chart/temperature-chart.component';
 import { WindChartComponent }         from './charts/wind-chart/wind-chart.component';
 import { CitationComponent } from './info/citation/citation.component';
+import { NoaaMapLiteComponent } from './noaa-map-lite/noaa-map-lite.component';
 
 @NgModule({
   declarations:
@@ -46,6 +47,7 @@ import { CitationComponent } from './info/citation/citation.component';
     TemperatureChartComponent,
     WindChartComponent,
     CitationComponent,
+    NoaaMapLiteComponent,
   ],
   imports:
   [
