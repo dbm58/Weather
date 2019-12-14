@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { ChartDataSets, ChartOptions }  from 'chart.js';
 import { Color, Label }                 from 'ng2-charts';
 import { DateFormatPipe, FromUnixPipe } from 'ngx-moment';
 
-import { ForecastDataService } from '../../Services/forecast-data.service';
+import * as moment from 'moment';
 
 @Component({
   selector:    'app-wind-chart',
@@ -13,6 +13,8 @@ import { ForecastDataService } from '../../Services/forecast-data.service';
 })
 export class WindChartComponent implements OnInit
 {
+  @Input( ) forecastData;
+
   lineChartData:   ChartDataSets[];
   lineChartLabels: Label[];
 
@@ -72,21 +74,11 @@ export class WindChartComponent implements OnInit
   lineChartType = 'line';
   lineChartPlugins = [];
 
-  fromUnix = ( x )    => ( new FromUnixPipe( ) ).transform( x );
-
-  constructor( private dataService: ForecastDataService )
-  {
-    dataService.getForecast( )
-               .subscribe( ( data ) => this.buildGraph( data ) );
-  }
+  constructor( ) { }
   
-  ngOnInit() { }
-
-  buildGraph( data )
+  ngOnInit( )
   {
-    var hourly = data.hourly.data.filter( (_,i) => i < 24 );
-
-    this.lineChartLabels = hourly.map( x => this.fromUnix( x.time ) );
+    this.lineChartLabels = this.forecastData.map( x => moment.unix( x.time ).format( ) );
 
     var pointImage = new Image( 30, 30 );
     pointImage.src = './assets/wi-wind-deg.svg';
@@ -94,19 +86,19 @@ export class WindChartComponent implements OnInit
     this.lineChartData =
     [
       {
-        data:       hourly.map( x => x.windSpeed ),
+        data:       this.forecastData.map( x => x.windSpeed ),
         fill:       false,
         label:      'Wind Speed',
         hitRadius:  20,
         pointStyle: pointImage,
-        rotation:   hourly.map( x => x.windBearing ),
+        rotation:   this.forecastData.map( x => x.windBearing ),
       },
       {
-        data:       hourly.map(
-                                x => x.windGust != x.windSpeed
-                                                 ? x.windGust 
-                                                 : null 
-                              ),
+        data:       this.forecastData.map(
+                                           x => x.windGust != x.windSpeed
+                                                            ? x.windGust 
+                                                            : null 
+                                         ),
         fill:       false,
         label:      'Wind Gust',
         hitRadius:  20

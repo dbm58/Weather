@@ -1,5 +1,7 @@
 <div class="container">
-  <a href="#">
+  <a routerLink="/charts/{{forecast.time}}"
+     href="#"
+     >
     <div class="day">{{forecast.time | amFromUnix | amDateFormat: 'dddd'}}</div>
     <div matTooltip="{{forecast.summary}}"
          matTooltipPosition="above"

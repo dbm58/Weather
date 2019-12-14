@@ -16,7 +16,8 @@ import { PrecipComponent }       from './precip/precip.component';
 const routes: Routes =
 [
   { path: 'bus',          component: BusComponent          },
-  { path: 'charts',       component: ChartsComponent       },
+  { path: 'charts/:time', component: ChartsComponent       },
+  { path: 'charts',       redirectTo: '/charts/0', pathMatch: 'full' },
   { path: 'home',         component: HomeComponent         },
   { path: 'info',         component: InfoComponent         },
   { path: 'lightning',    component: LightningMapComponent },

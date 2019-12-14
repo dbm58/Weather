@@ -1,3 +1,8 @@
+mat-grid-list
+{
+  overflow: hidden;
+}
+
 app-temperature-chart, app-wind-chart, app-precip-chart
 {
   box-shadow: 4px 4px 3px 1px #cccccc;

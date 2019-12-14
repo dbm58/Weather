@@ -15,4 +15,8 @@ export class ForecastTileComponent implements OnInit {
   ngOnInit() {
   }
 
+  filter( data )
+  {
+    return { filter: (data) => data.hourly.data.filter( (_,i) => i < 24 ) };
+  }
 }

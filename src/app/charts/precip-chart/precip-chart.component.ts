@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { ChartDataSets, ChartOptions }  from 'chart.js';
 import { Color, Label }                 from 'ng2-charts';
 import { DateFormatPipe, FromUnixPipe } from 'ngx-moment';
 
-import { ForecastDataService } from '../../Services/forecast-data.service';
+import * as moment from 'moment';
 
 @Component({
   selector:    'app-precip-chart',
@@ -13,6 +13,8 @@ import { ForecastDataService } from '../../Services/forecast-data.service';
 })
 export class PrecipChartComponent implements OnInit
 {
+  @Input( ) forecastData;
+
   lineChartData:    ChartDataSets[ ];
   lineChartLabels:  Label[];
 
@@ -84,26 +86,16 @@ export class PrecipChartComponent implements OnInit
   lineChartType    = 'line';
   lineChartPlugins = [];
 
-  fromUnix = ( x ) => ( new FromUnixPipe( ) ).transform( x );
+  constructor( ) { }
 
-  constructor( private dataService: ForecastDataService )
+  ngOnInit( )
   {
-    dataService.getForecast( )
-               .subscribe( ( data ) => this.buildGraph( data ) );
-  }
-
-  ngOnInit() { }
-
-  buildGraph( data )
-  {
-    var hourly = data.hourly.data.filter( (_,i) => i < 24 );
-
-    this.lineChartLabels = hourly.map( x => this.fromUnix( x.time ) );
+    this.lineChartLabels = this.forecastData.map( x => moment.unix( x.time ).format( ) );
 
     this.lineChartData =
     [
       {
-        data:      hourly.map( x => x.precipProbability * 100 ),
+        data:      this.forecastData.map( x => x.precipProbability * 100 ),
         fill:      false,
         label:     null, 
         hitRadius: 20,

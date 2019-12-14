@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { ChartDataSets, ChartOptions }  from 'chart.js';
 import { Color, Label }                 from 'ng2-charts';
 import { DateFormatPipe, FromUnixPipe } from 'ngx-moment';
 
-import { ForecastDataService } from '../../Services/forecast-data.service';
+import * as moment from 'moment';
 
 @Component({
   selector:    'app-temperature-chart',
@@ -13,6 +13,8 @@ import { ForecastDataService } from '../../Services/forecast-data.service';
 })
 export class TemperatureChartComponent implements OnInit
 {
+  @Input( ) forecastData;
+
   lineChartData:   ChartDataSets[ ];
   lineChartLabels: Label[ ];
 
@@ -73,32 +75,22 @@ export class TemperatureChartComponent implements OnInit
   lineChartType    = 'line';
   lineChartPlugins = [];
 
-  fromUnix = ( x ) => ( new FromUnixPipe( ) ).transform( x );
+  constructor( ) { }
 
-  constructor( private dataService: ForecastDataService )
+  ngOnInit( )
   {
-    dataService.getForecast( )
-               .subscribe( ( data ) => this.buildGraph( data ) );
-  }
-
-  ngOnInit() { }
-
-  buildGraph( data )
-  {
-    var hourly = data.hourly.data.filter( (_,i) => i < 24 );
-
-    this.lineChartLabels = hourly.map( x => this.fromUnix( x.time ) );
-
+    this.lineChartLabels = this.forecastData.map( x => moment.unix( x.time ).format( ) );
+  
     this.lineChartData =
     [
       {
-        data:      hourly.map( x => x.temperature ),
+        data:      this.forecastData.map( x => x.temperature ),
         fill:      false,
         label:     'Actual Temperature',
         hitRadius: 20,
       },
       {
-        data:      hourly.map( x => x.apparentTemperature ),
+        data:      this.forecastData.map( x => x.apparentTemperature ),
         fill:      false,
         label:     "'Feels Like' Temperature",
         hitRadius: 20,
