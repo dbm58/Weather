@@ -1,6 +1,6 @@
 div.container
 {
-  width: 100%;
+  width:      100%;
   text-align: center;
 }
 
@@ -11,14 +11,14 @@ div.container
 
 .temp
 {
-  font-size: 30vmin;
+  font-size:  30vmin;
   margin-top: 5vmin;
 }
 
 div.temp-min-max
 {
   margin-top: 1vmin;
-  font-size: 4vmin;
+  font-size:  4vmin;
 }
 
 div.feels-like
@@ -40,16 +40,20 @@ div.wind span.wi
 
 .precip
 {
-  font-size: 4vmin;
+  font-size:  4vmin;
   margin-top: 1vmin;
 }
 
 div.as-of
 {
-  font-size: 1.5vmin;
+  font-size:  1.5vmin;
   margin-top: 2vmin;
-  color: gray;
+  color:      gray;
 }
 
-a { color:inherit; text-decoration: none; }
+a
+{
+  color:           inherit;
+  text-decoration: none;
+}
 

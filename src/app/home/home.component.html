@@ -1,4 +1,7 @@
-<mat-grid-list *ngIf="forecast" cols="10" rowHeight="24.9%">
+<mat-grid-list *ngIf="forecast$ | async as forecast; else loading"
+               cols="10"
+               rowHeight="24.9%"
+               >
   <mat-grid-tile class="today" colspan=6 rowspan=3>
     <app-forecast-tile [conditions]="forecast.currently"
                        [forecast]="forecast.daily.data[0]"
@@ -12,3 +15,6 @@
     </app-forecast-tile-small>
   </mat-grid-tile>
 </mat-grid-list>
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

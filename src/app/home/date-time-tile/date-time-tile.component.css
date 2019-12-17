@@ -1,7 +1,6 @@
-
 .container
 {
-  width: 100%;
+  width:      100%;
   text-align: center;
 }
 
@@ -9,8 +8,9 @@
 {
   font-size: 15vmin;
 }
+
 .date-time-tile-date
 {
   font-size: 5vmin;
-  color: #CCCCCC;
+  color:     #CCCCCC;
 }

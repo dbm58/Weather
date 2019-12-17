@@ -26,6 +26,7 @@ import { TemperatureChartComponent }  from './charts/temperature-chart/temperatu
 import { WindChartComponent }         from './charts/wind-chart/wind-chart.component';
 import { CitationComponent } from './info/citation/citation.component';
 import { NoaaMapLiteComponent } from './noaa-map-lite/noaa-map-lite.component';
+import { FilterByDatePipe } from './Pipes/filter-by-date.pipe';
 
 @NgModule({
   declarations:
@@ -48,6 +49,7 @@ import { NoaaMapLiteComponent } from './noaa-map-lite/noaa-map-lite.component';
     WindChartComponent,
     CitationComponent,
     NoaaMapLiteComponent,
+    FilterByDatePipe,
   ],
   imports:
   [

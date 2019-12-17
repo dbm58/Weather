@@ -5,12 +5,15 @@ mat-grid-list
 
 mat-grid-tile.today
 {
-  box-shadow: 3px 3px 3px 1px #000000;
-  border-radius: 30px;
-  background-color:#00002a;
+  box-shadow:       3px 3px 3px 1px #000000;
+  border-radius:    30px;
+  background-color: #00002a;
 }
 
-mat-grid-tile
+mat-spinner
 {
-  xbackground-color: pink;  /*  for testing  */
+  position:  absolute;
+  top:       50%;
+  left:      50%;
+  transform: translate(-50%, -50%);
 }

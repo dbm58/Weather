@@ -3,6 +3,7 @@ import {
          MatButtonModule,
          MatGridListModule,
          MatIconModule,
+         MatProgressSpinnerModule,
          MatSidenavModule,
          MatTooltipModule
        } from '@angular/material';
@@ -12,6 +13,7 @@ const  MaterialComponents =
          MatButtonModule,
          MatGridListModule,
          MatIconModule,
+         MatProgressSpinnerModule,
          MatSidenavModule,
          MatTooltipModule
        ];
