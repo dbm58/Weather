@@ -4,6 +4,12 @@ if( ! process.env.darkSkyKey )
   process.exit( 1 );
 }
 
+if( ! process.env.mctsKey )
+{
+  console.info( '"mctsKey" environment variable is not set' );
+  process.exit( 1 );
+}
+
 const express = require( 'express' );
 const unirest = require( 'unirest' );
 const cors    = require( 'cors'    );
@@ -27,6 +33,41 @@ app.use( cors( ) )
            const key = process.env.darkSkyKey;
            const url = `https://api.darksky.net/forecast/${key}/${lat},${lon}`;
 
+           let request = unirest( 'GET', url );
+           request.query
+                   (
+                     {
+                       lang:  'en',
+                       units: 'auto'
+                     }
+                   )
+                  .end( 
+                        response =>
+                        {
+                          if( response.error )
+                          {
+                            console.info( response.error );
+                            res.status( 500 )
+                               .end( );
+                          }
+                          res.status( 200 )
+                             .send( response.body );
+                        }
+                      );
+         }
+       )
+   .get( '/bus',
+         ( req, res ) =>
+         {
+           console.info( 'Handling /bus request' );
+
+           const key  = `key=${process.env.mctsKey}`;
+           const rte  = 'rt=GOL';
+           const stop = 'stpid=582';
+           const fmt  = 'format=json';
+           const url  = `http://realtime.ridemcts.com/bustime/api/v3/getpredictions?${key}&${rte}&${stop}&${fmt}`;
+
+           console.info( `url=${url}` );
            let request = unirest( 'GET', url );
            request.query
                    (

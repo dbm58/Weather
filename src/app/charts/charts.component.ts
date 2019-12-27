@@ -18,7 +18,7 @@ export class ChartsComponent implements OnInit
   forecast$;
 
   constructor(
-               private route: ActivatedRoute,
+               private route:       ActivatedRoute,
                private dataService: ForecastDataService
              ) { }
 

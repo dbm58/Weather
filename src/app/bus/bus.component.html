@@ -1,1 +1,25 @@
-<p>bus works!</p>
+<ng-container *ngIf="( busTimes$ | async ) as busTimes; else loading">
+  <table mat-table [dataSource]="busTimes['bustime-response'].prd">
+    <ng-container matColumnDef="vid">
+      <th mat-header-cell *matHeaderCellDef> Vehicle ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.vid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prdtm">
+      <th mat-header-cell *matHeaderCellDef> Predicted Time </th>
+      <td mat-cell *matCellDef="let element"> {{element.prdtm}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prdctdn">
+      <th mat-header-cell *matHeaderCellDef> Minutes to Arrival </th>
+      <td mat-cell *matCellDef="let element"> {{element.prdctdn}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['vid','prdctdn','prdtm']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['vid','prdctdn','prdtm']"></tr>
+  </table>
+</ng-container>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

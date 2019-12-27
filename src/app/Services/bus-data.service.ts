@@ -6,12 +6,12 @@ import { HttpClient } from '@angular/common/http';
                providedIn: 'root'
              }
            )
-export class ForecastDataService
+export class BusDataService
 {
   constructor( private http: HttpClient ) { }
 
-  getForecast( )
+  getBusTimes( )
   {
-    return this.http.get( 'http://localhost:3000/forecast' );
+    return this.http.get( 'http://localhost:3000/bus' );
   }
 }

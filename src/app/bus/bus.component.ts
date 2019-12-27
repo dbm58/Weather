@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-bus',
-  templateUrl: './bus.component.html',
-  styleUrls: ['./bus.component.css']
-})
-export class BusComponent implements OnInit {
+import { BusDataService } from '../Services/bus-data.service';
 
-  constructor() { }
+@Component(
+            {
+              selector:    'app-bus',
+              templateUrl: './bus.component.html',
+              styleUrls:   ['./bus.component.css']
+            }
+          )
+export class BusComponent implements OnInit
+{
+  busTimes$;
 
-  ngOnInit() {
+  constructor( private dataService: BusDataService ) { }
+
+  ngOnInit( )
+  {
+    this.busTimes$ = this.dataService.getBusTimes( );
   }
 
 }
