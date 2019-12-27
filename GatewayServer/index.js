@@ -59,7 +59,7 @@ app.use( cors( ) )
    .get( '/bus',
          ( req, res ) =>
          {
-           console.info( 'Handling /bus request' );
+           console.info( `${new Date( ).toISOString( )} Handling /bus request` );
 
            const key  = `key=${process.env.mctsKey}`;
            const rte  = 'rt=GOL';
@@ -67,7 +67,6 @@ app.use( cors( ) )
            const fmt  = 'format=json';
            const url  = `http://realtime.ridemcts.com/bustime/api/v3/getpredictions?${key}&${rte}&${stop}&${fmt}`;
 
-           console.info( `url=${url}` );
            let request = unirest( 'GET', url );
            request.query
                    (
