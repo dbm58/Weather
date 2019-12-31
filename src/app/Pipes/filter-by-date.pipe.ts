@@ -12,18 +12,18 @@ export class FilterByDatePipe implements PipeTransform
 
     let filterTime  = moment.unix( unixTime );
 
-    let filterExpr = ( unixTime == 0 )
-                   ? ( _, i ) => i < 25
-                   : ( d, i ) => 
-                     {
-                       let mTime = moment.unix( d.time );
-                       return mTime.isSame( filterTime, 'day' )
-                           || mTime.subtract( 1, 'hour' ).isSame( filterTime, 'day' );
-                     }
-
-    return value.hourly
-                .data
-                .filter( filterExpr )
+    if( unixTime == 0 )
+      return value.hourly.data.slice( 0, 25 );
+    else
+      return value.hourly
+                  .data
+                  .filter(
+                           ( d, i ) => 
+                           {
+                             let mTime = moment.unix( d.time );
+                             return mTime.isSame( filterTime, 'day' )
+                                 || mTime.subtract( 1, 'hour' ).isSame( filterTime, 'day' );
+                           }
+                         );
   }
-
 }

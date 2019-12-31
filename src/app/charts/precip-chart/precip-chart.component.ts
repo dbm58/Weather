@@ -18,6 +18,14 @@ export class PrecipChartComponent implements OnInit
   lineChartData:    ChartDataSets[ ];
   lineChartLabels:  Label[];
 
+  //  two line charts with different axes:
+  //  https://stackoverflow.com/questions/38085352/how-to-use-two-y-axes-in-chart-js-v2/38094165#38094165
+  //  I really want a line and bar chart here; precip amount in the bar chart
+  //  see: https://www.chartjs.org/docs/latest/charts/mixed.html
+  //
+  //  todo:  need to set the tooltip to indicate precip type, and
+  //  intensity/accumulation
+
   lineChartOptions: object =
   {
     legend: { display: false },
@@ -31,18 +39,27 @@ export class PrecipChartComponent implements OnInit
       xAxes:
       [
         {
+          id:   'prob-x',
           type: 'time',
           time:
           {
             unit: 'hour',
             displayFormats: { hour: 'HH' }
           }
+        },
+        {
+          id:   'accum-x',
+          type: 'category',
+          display: false,
         }
       ],
 
       yAxes:
       [
         {
+          id:          'prob',
+          type:        'linear',
+          position:    'left',
           ticks:
           {
             steps:     10,
@@ -50,6 +67,11 @@ export class PrecipChartComponent implements OnInit
             max:       100,
             min:       0
           }
+        },
+        {
+          id:          'accum',
+          type:        'linear',
+          position:    'right',
         }
       ]
     },
@@ -69,7 +91,8 @@ export class PrecipChartComponent implements OnInit
         label: ( tooltipItem, data ) =>
         {
           let prob  = data.datasets[0].data[tooltipItem.index];
-          let label = 'Precipitation probability ' + prob + "%";
+          let amt   = data.datasets[1].data[tooltipItem.index];
+          let label = `Precipitation probability ${prob}%; Amount ${amt}`;
           return label;
         }
       }
@@ -78,12 +101,12 @@ export class PrecipChartComponent implements OnInit
 
   lineChartColors: Color[] =
   [
-    { borderColor: 'black'     },
-    { borderColor: 'lightgray' },
+    { borderColor: 'black' },
+    { borderColor: 'red'   },
   ];
 
   lineChartLegend  = true;
-  lineChartType    = 'line';
+  lineChartType    = null;
   lineChartPlugins = [];
 
   constructor( ) { }
@@ -99,6 +122,20 @@ export class PrecipChartComponent implements OnInit
         fill:      false,
         label:     null, 
         hitRadius: 20,
+        type:      'line',
+        xAxisID:   'prob-x',
+        yAxisID:   'prob',
+      },
+      {
+      data:      this.forecastData.map( x => ( x.precipAccumulation || x.precipIntensity || 0 ) ),
+        fill:      true,
+        backgroundColor: "#ff0000",
+        borderColor: "#ff0000",
+        label:     null, 
+        hitRadius: 20,
+        type:      'bar',
+        xAxisID:   'accum-x',
+        yAxisID:   'accum',
       }
     ];
   }
