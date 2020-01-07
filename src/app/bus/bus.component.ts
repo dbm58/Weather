@@ -1,8 +1,8 @@
-import { Component, OnInit }  from '@angular/core';
-import {interval}             from "rxjs/internal/observable/interval";
-import {startWith, switchMap} from "rxjs/operators";
+import { Component }            from '@angular/core';
+import { interval }             from "rxjs/internal/observable/interval";
+import { startWith, switchMap } from "rxjs/operators";
 
-import { BusDataService } from '../Services/bus-data.service';
+import { DataService }          from '../Services/data.service';
 
 @Component(
             {
@@ -11,20 +11,17 @@ import { BusDataService } from '../Services/bus-data.service';
               styleUrls:   ['./bus.component.css']
             }
           )
-export class BusComponent implements OnInit
+export class BusComponent
 {
-  busTimes$;
+  constructor( private dataService: DataService ) { }
 
-  constructor( private dataService: BusDataService ) { }
+  private readonly autoRefresh$ =
+    interval( 60 * 1000 ) // 60 seconds
+      .pipe( startWith( 0 ) );
 
-  ngOnInit( )
-  {
-    this.busTimes$ =
-      interval( 60 * 1000 ) // 60 seconds
+  private readonly busTimes$ =
+    this.autoRefresh$
         .pipe(
-               startWith( 0 ),
                switchMap( ( ) => this.dataService.getBusTimes( ) )
-             )
-      ;
-  }
+             );
 }

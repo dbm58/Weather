@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ForecastDataService } from '../Services/forecast-data.service';
+import { DataService }       from '../Services/data.service';
 
 @Component(
             {
@@ -9,14 +9,10 @@ import { ForecastDataService } from '../Services/forecast-data.service';
               styleUrls:   ['./home.component.css']
             }
           )
-export class HomeComponent implements OnInit
+export class HomeComponent
 {
-  forecast$;
+  constructor( private dataService: DataService ) { }
 
-  constructor( private dataService: ForecastDataService ) { }
-
-  ngOnInit()
-  {
-    this.forecast$ = this.dataService.getForecast( );
-  }
+  //  todo:  add auto refresh.  see bus component.  refresh every 15 minutes
+  private readonly forecast$ = this.dataService.getForecast( );
 }

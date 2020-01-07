@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute }    from "@angular/router";
+import { Component }      from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
 
 import * as moment from 'moment';
 
-import { ForecastDataService } from '../Services/forecast-data.service';
+import { DataService } from '../Services/data.service';
 
 @Component(
             {
@@ -12,19 +12,14 @@ import { ForecastDataService } from '../Services/forecast-data.service';
               styleUrls:   ['./charts.component.css']
             }
           )
-export class ChartsComponent implements OnInit
+export class ChartsComponent
 {
-  options$;
-  forecast$;
-
   constructor(
                private route:       ActivatedRoute,
-               private dataService: ForecastDataService
+               private dataService: DataService
              ) { }
 
-  ngOnInit( )
-  {
-    this.options$ = this.route.params;
-    this.forecast$ = this.dataService.getForecast( );
-  }
+  private readonly options$ = this.route.params;
+
+  private readonly forecast$ = this.dataService.getForecast( );
 }
