@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { Logger }      from '@nestjs/common';
+import { AppModule }   from './app.module';
 
 import * as dotenv from 'dotenv';
 
 dotenv.config( );
+
+let logger = new Logger( 'bootstrap' );
+logger.log( `Listening on port ${process.env.PORT}` );
 
 async function bootstrap( )
 {

@@ -2,6 +2,32 @@ import { Injectable, Logger } from '@nestjs/common';
 
 import * as moment from 'moment';
 
+//----------------------------------------------------------------------
+//  Calculate trash and recycling pick-up dates.
+//
+//  Holidays are:
+//      new year's jan 1
+//      memorial day last monday in may
+//      independence day july 4
+//      labor day first monday of september
+//      thanksgiving  fourth thursday in november
+//      christmas  dec 25
+//
+//  first week of 2020 is garbage/recycling
+//
+//  yard waste april-13 through october 9
+//----------------------------------------------------------------------
+
+type trashDatesStruct =
+  {
+    date:          Date;
+    dayOfWeek:     number;
+    isHolidayWeek: boolean;
+    isTrash:       boolean;
+    isRecycle:     boolean;
+    isYardWaste:   boolean;
+  };
+
 @Injectable( )
 export class TrashService
 {
@@ -11,76 +37,80 @@ export class TrashService
     this.logger.log( 'Loading...' );
   }
 
-  //  holidays are:
-  //      new year's jan 1
-  //      memorial day last monday in may
-  //      independence day july 4
-  //      labor day first monday of september
-  //      thanksgiving  fourth thursday in november
-  //      christmas  dec 25
-  //
-  //  first week of 2020 is garbage/recycling
-  //
-  //  yard waste april-13 through october 9
-  //
-  static date:       Date;
-  static isTrash:    boolean;
-  static isRecycle:  boolean;
-  static isYardWast: boolean;
+  private trashDates: trashDatesStruct;
 
-  //  Holidays
-  //
-  //  OK.  Don't use discrete variables.  Instead, use an array, so that we
-  //  can do linqy things with it.
-  //  then we can find the corresponding holiday:
-  //
-  //  holidays.where( h => h.diff( today, 'days' ) < 5 )
-  //          .any( ); 
-  //
-  //  I don't remember what the ES6 equivalents are.  Look it up.
+  private holidays = [ ];
 
-  //  todo:  get typescript support for vim:
-  //  https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support#vim
+  loadHolidays( )
+  {
+    if( this.holidays.length > 0 )
+      return;
 
-  static currYear = moment( ).year( );
-  static newYears = moment( [ TrashService.currYear, 0, 1 ] );
-  static memorialDay = moment( [ TrashService.currYear, 4, 31 ] ).startOf( 'isoWeek' );
-  static july4 = moment( [ TrashService.currYear, 6, 4 ] );
-  static sept1 = moment( [ TrashService.currYear, 8, 1 ] );
-  static laborDay =
-    ( TrashService.sept1.day( ) <= 1 )                                //>
-        ? TrashService.sept1.day( 'Monday' )
-        : TrashService.sept1.add( 1, 'weeks' ).day( 'Monday' );
-  static nov1 = moment( [ TrashService.currYear, 10, 1 ] );
-  static thanksgiving = 
-    (
-      ( TrashService.nov1.day( ) <= 4 )                                //>
-            ? TrashService.nov1.day( 'Thursday' )
-            : TrashService.nov1.add( 1, 'weeks' ).day( 'Thursday' )
-    ).add( 3, 'weeks' );
-  static christmas = moment( [ TrashService.currYear, 11, 25 ] );
+    let currYear = moment( ).year( );
+    this.holidays.push( moment( [ currYear, 0, 1 ] ) );  // new years
+    this.holidays.push( moment( [ currYear, 4, 31 ] ).startOf( 'isoWeek' ) ); // memorial day
+    this.holidays.push( moment( [ currYear, 6, 4 ] ) ); // july 4;
+    let sept1 = moment( [ currYear, 8, 1 ] );
+    this.holidays.push(
+                        ( sept1.day( ) <= 1 )                                //>
+                          ? sept1.day( 'Monday' )
+                          : sept1.add( 1, 'weeks' ).day( 'Monday' )
+                      ); // labor day
+    let nov1 = moment( [ currYear, 10, 1 ] );
+    this.holidays.push(
+                        (
+                          ( nov1.day( ) <= 4 )                                //>
+                            ? nov1.day( 'Thursday' )
+                            : nov1.add( 1, 'weeks' ).day( 'Thursday' )
+                        ).add( 3, 'weeks' )
+                      );  // thanksgiving
+    this.holidays.push( moment( [ currYear, 11, 25 ] ) ); // christmas
+  }
+
 
   getDate( subscriber )
   {
     this.logger.log( 'Calculating trash collection dates' );
 
-    //  get today
-    //  if equal to static, return statics
-    //  is Friday?
-    //  is Saturday?
-    //  no?  return false
-    //  is Saturday
-    //    is holiday week?
-    //       calculate recycle, yardwaste
-    //       return
-    //  is Friday?
-    //    calculate recycle, yardwaste
-    //    return
-    subscriber.next( 'hello observable 5' );
-    let today = moment( );
-    let firstPickup = moment( [ 2020, 0, 3 ] );
-    subscriber.next( today.diff( firstPickup, 'days' ) );
-    subscriber.next( TrashService.thanksgiving );
+    this.loadHolidays( );
+
+    this.setValues( moment( ) );
+
+    subscriber.next( this.trashDates );
     subscriber.complete( );
+  }
+
+  private setValues( today )
+  {
+    this.trashDates = {
+                        date:          today,
+                        dayOfWeek:     today.day( ),
+                        isHolidayWeek: false,
+                        isTrash:       false,
+                        isRecycle:     false,
+                        isYardWaste:   false,
+                      };
+
+    if( this.trashDates.dayOfWeek < 5 )
+      return;
+
+    this.trashDates.isHolidayWeek =
+      this.holidays
+          .map( h => today.diff( h, 'days' ) )
+          .filter( h => h > 0 )
+          .some( h => h < 6 );
+
+    this.trashDates.isTrash = ( ( this.trashDates.dayOfWeek == 5 ) && !this.trashDates.isHolidayWeek )
+                           || ( ( this.trashDates.dayOfWeek == 6 ) && this.trashDates.isHolidayWeek  );
+
+    if( !this.trashDates.isTrash )
+      return;
+
+    let friday = moment( today ).startOf( 'week' ).add( 5, 'days' );
+    let refDate = moment( [ 2020, 0, 3 ] );
+    let refDiff = friday.diff( refDate, 'days' );
+    
+    this.trashDates.isRecycle   = refDiff % 14 == 0;
+    this.trashDates.isYardWaste = refDiff % 14 == 7;
   }
 }
