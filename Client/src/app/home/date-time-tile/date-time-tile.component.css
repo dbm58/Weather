@@ -14,3 +14,14 @@
   font-size: 5vmin;
   color:     #CCCCCC;
 }
+
+.trash-icons
+{
+  margin-top: 20px;
+  color:      #CCCCCC;
+}
+
+.trash-icon
+{
+  margin-right: 10px
+}

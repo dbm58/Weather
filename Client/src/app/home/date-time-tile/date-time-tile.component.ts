@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataService }       from '../../Services/data.service';
+
 @Component(
             {
               selector:    'app-date-time-tile',
@@ -9,13 +11,19 @@ import { Component, OnInit } from '@angular/core';
           )
 export class DateTimeTileComponent implements OnInit
 {
+  constructor( private dataService: DataService ) { }
+
   datetime: Date;
 
-  constructor() { }
+  private readonly trashDayInfo$ = this.dataService.getTrashDay( );
 
   ngOnInit( )
   {
     this.datetime = new Date( );
     setInterval( ( ) => this.datetime = new Date( ), 60000 );
+
+    let x = this.dataService.getTrashDay( ).subscribe(
+      x => console.log( x )
+    );
   }
 }

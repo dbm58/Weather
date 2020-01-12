@@ -24,4 +24,9 @@ export class DataService
   {
     return this.http.get( 'http://localhost:3000/forecast' );
   }
+
+  getTrashDay( )
+  {
+    return this.http.get( 'http://localhost:3002/trash' );
+  }
 }

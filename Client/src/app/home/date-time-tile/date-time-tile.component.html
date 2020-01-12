@@ -1,4 +1,8 @@
 <div class="container">
   <div class="date-time-tile-time">{{ datetime | amDateFormat:'h:mm a' }}</div>
   <div class="date-time-tile-date">{{ datetime | amDateFormat:'LL'}}</div>
+  <div *ngIf="trashDayInfo$ | async as trashDayInfo" class="trash-icons">
+    <i *ngIf="trashDayInfo.isTrash" class="trash-icon fas fa-trash fa-lg"></i>
+    <i *ngIf="trashDayInfo.isTrash && trashDayInfo.isRecycle" class="recycle-icon fas fa-recycle fa-lg"></i>
+  </div>
 </div>
