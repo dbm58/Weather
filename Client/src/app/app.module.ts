@@ -27,6 +27,7 @@ import { WindChartComponent }         from './charts/wind-chart/wind-chart.compo
 import { CitationComponent } from './info/citation/citation.component';
 import { NoaaMapLiteComponent } from './noaa-map-lite/noaa-map-lite.component';
 import { FilterByDatePipe } from './Pipes/filter-by-date.pipe';
+import { Home2Component } from './home2/home2.component';
 
 @NgModule({
   declarations:
@@ -50,6 +51,7 @@ import { FilterByDatePipe } from './Pipes/filter-by-date.pipe';
     CitationComponent,
     NoaaMapLiteComponent,
     FilterByDatePipe,
+    Home2Component,
   ],
   imports:
   [

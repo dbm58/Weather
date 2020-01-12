@@ -1,0 +1,31 @@
+<div class="parent"
+     *ngIf="forecast$ | async as forecast; else loading"
+     >
+  <div class="tile div1">
+    <app-forecast-tile [conditions]="forecast.currently"
+                       [forecast]="forecast.daily.data[0]"
+                       ></app-forecast-tile>
+  </div>
+  <div class="tile div2"> </div>
+  <div class="tile div3"> </div>
+  <div class="tile div4"> </div>
+  <div class="tile div5"> </div>
+  <div class="tile div6"> </div>
+  <div class="tile div7"> </div>
+  <div class="tile div8"> </div>
+</div>
+
+<!--
+  <mat-grid-tile colspan=4 rowspan=3>
+    <app-date-time-tile></app-date-time-tile>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor='let day of [1,2,3,4,5]' colspan=2>
+    <app-forecast-tile-small [forecast]="forecast.daily.data[day]">
+    </app-forecast-tile-small>
+  </mat-grid-tile>
+</mat-grid-list>
+-->
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
