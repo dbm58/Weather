@@ -1,6 +1,6 @@
-<mat-card class="mat-elevation-z8">
-  <a routerLink="{{link}}" href="#">
-    <img src="https://radar.weather.gov/ridge/lite/{{mapUrl}}" />
-  </a>
-</mat-card>
-
+<a routerLink="{{link}}" href="#">
+  <div class="mat-elevation-z8"
+       [style.background-image]="'url(https://radar.weather.gov/ridge/lite/' + mapUrl + ')'"
+       >
+  </div>
+</a>
