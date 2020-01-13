@@ -1,6 +1,9 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav opened mode="side" position="end">
-    <div style="display:flex; flex-direction:column; height:100%;">
+<div class="parent">
+  <div class="div1">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="div2">
+    <div class="nav-bar">
       <app-nav-button routerLink="/home">home</app-nav-button>
       <app-nav-button routerLink="/radar">track_changes</app-nav-button>
       <app-nav-button routerLink="/precip" fontIcon="wi-raindrop">track_changes</app-nav-button>
@@ -11,8 +14,5 @@
 
       <app-nav-button routerLink="/info">info</app-nav-button>
     </div>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </div>
+</div>

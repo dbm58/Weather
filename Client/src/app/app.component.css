@@ -1,18 +1,35 @@
-mat-sidenav-container
+/*  generated from https://cssgrid-generator.netlify.com/ */
+
+.parent {
+display: grid;
+grid-template-columns: 0px auto max-content 0px;
+grid-template-rows: 0px 1fr 0px;
+grid-column-gap: 10px;
+grid-row-gap: 10px;
+}
+
+.div1 { grid-area: 2 / 2 / 3 / 3; }
+.div2 { grid-area: 2 / 3 / 3 / 4; }
+
+/*  customizations:  */
+
+.parent
 {
+  width: 100%;
   height: 100%;
-  background-color: inherit;
-  color: white;
+}
+.div2
+{
+  display:          flex;
+  flex-flow:        column;
+  border-radius:    10px;
+  border:           2px solid black;
+  background-color: gray;
 }
 
-mat-sidenav-content
+.nav-bar
 {
-  overflow: hidden;
-}
-
-mat-sidenav
-{
-  background-color: silver;
-  #width: 200px;
-  box-shadow: -3px 0px 3px 1px silver;
+  display:          flex;
+  flex-direction:   column;
+  height:           100%;
 }

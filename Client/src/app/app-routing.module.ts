@@ -19,7 +19,7 @@ const routes: Routes =
   { path: 'bus',          component: BusComponent          },
   { path: 'charts/:time', component: ChartsComponent       },
   { path: 'charts',       redirectTo: '/charts/0', pathMatch: 'full' },
-  { path: 'home',         component: HomeComponent         },
+  { path: 'home',         component: Home2Component        },
   { path: 'home2',        component: Home2Component        },
   { path: 'info',         component: InfoComponent         },
   { path: 'lightning',    component: LightningMapComponent },

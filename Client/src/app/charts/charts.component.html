@@ -1,18 +1,11 @@
 <ng-container *ngIf="( options$ | async ) as options; else loading">
-  <mat-grid-list *ngIf="( forecast$ | async | filterByDate:options.time ) as forecast; else loading"
-                 cols="1"
-                 rowHeight="32.9%"
-                 >
-    <mat-grid-tile>
-      <app-temperature-chart [forecastData]="forecast"></app-temperature-chart>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <app-wind-chart [forecastData]="forecast"></app-wind-chart>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <app-precip-chart [forecastData]="forecast"></app-precip-chart>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div *ngIf="( forecast$ | async | filterByDate:options.time ) as forecast; else loading"
+       class="parent"
+       >
+    <div class="div1"><app-temperature-chart [forecastData]="forecast"></app-temperature-chart></div>
+    <div class="div2"><app-wind-chart [forecastData]="forecast"></app-wind-chart></div>
+    <div class="div3"><app-precip-chart [forecastData]="forecast"></app-precip-chart></div>
+  </div>
 </ng-container>
 <ng-template #loading>
   <mat-spinner></mat-spinner>

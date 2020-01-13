@@ -10,10 +10,11 @@ iframe
    * small stip at the bottom of the screen that looks bad; second, I 
    * suspect that this will fail due to rounding error at some resolutions.
    */
-  overflow: hidden;
-  height:   99.6%;
-  width:    100%;
-  margin:   0px;
-  padding:  0px;
-  border:   none; 
+  overflow:      hidden;
+  height:        99.6%;
+  width:         100%;
+  margin:        0px;
+  padding:       0px;
+  border:        1px solid black; 
+  border-radius: 10px;
 }
