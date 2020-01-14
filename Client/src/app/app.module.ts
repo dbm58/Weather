@@ -28,6 +28,7 @@ import { CitationComponent } from './info/citation/citation.component';
 import { NoaaMapLiteComponent } from './noaa-map-lite/noaa-map-lite.component';
 import { FilterByDatePipe } from './Pipes/filter-by-date.pipe';
 import { Home2Component } from './home2/home2.component';
+import { NextBusTileComponent } from './next-bus-tile/next-bus-tile.component';
 
 @NgModule({
   declarations:
@@ -52,6 +53,7 @@ import { Home2Component } from './home2/home2.component';
     NoaaMapLiteComponent,
     FilterByDatePipe,
     Home2Component,
+    NextBusTileComponent,
   ],
   imports:
   [

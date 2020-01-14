@@ -38,7 +38,8 @@ const routes: Routes =
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  //  todo:  reload option doesn't appear to be working??
+  imports: [ RouterModule.forRoot( routes, { onSameUrlNavigation: 'reload' } ) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
