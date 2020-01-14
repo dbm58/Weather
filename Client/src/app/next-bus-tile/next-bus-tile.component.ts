@@ -30,7 +30,7 @@ export class NextBusTileComponent
                           ( _ ) =>
                           { 
                             let hrs = ( new Date( ) ).getHours( );
-                            return ( hrs >= 4 && hrs <= 8 );
+                            return ( hrs >= 4 && hrs <= 7 );
                           }
                         ),
                switchMap( ( ) => this.dataService.getBusTimes( ) )
