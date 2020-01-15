@@ -1,6 +1,7 @@
 import { Component, OnInit }    from '@angular/core';
 import { interval }             from "rxjs/internal/observable/interval";
 import {
+         map,
          startWith,
          switchMap,
          takeWhile

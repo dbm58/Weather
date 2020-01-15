@@ -1,5 +1,10 @@
-import { Controller, Get, Logger } from '@nestjs/common';
-import { Observable }              from 'rxjs';
+import {
+         Controller,
+         Get,
+         Logger,
+         Param,
+       } from '@nestjs/common';
+import { Observable } from 'rxjs';
 
 import { BustimeService } from './bustime.service';
 
@@ -18,10 +23,18 @@ export class BustimeController
   }
 
   @Get( )
-  async get( )
+  async getPredictions( )
   {
     this.logger.log( `Handling /${ENDPOINT} request` );
 
     return this.service.get( );
+  }
+
+  @Get( ':vid' )
+  async getBusInfo( @Param( 'vid' ) vid )
+  {
+    this.logger.log( `Handling /${ENDPOINT}/${vid} request` );
+
+    return this.service.getBusInfo( vid );
   }
 }

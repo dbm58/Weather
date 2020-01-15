@@ -1,4 +1,12 @@
-:host
+div
 {
-  color: #CCCCCC;
+  display:        inline-flex;
+  vertical-align: middle;
+  align-items:    center;
+  color:          #CCCCCC;
+}
+
+mat-icon
+{
+  margin-left:    4px;
 }

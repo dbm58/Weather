@@ -1,5 +1,7 @@
-<ng-container *ngIf="( busTimes$ | async ) as busTimes">
-  <ng-container *ngIf="busTimes['bustime-response'].prd[0] as prd">
-    Next Bus: {{ prd.prdctdn }} minutes <span *ngIf="!prd.vid">(scheduled)</span>
-  </ng-container>
-</ng-container>
+<div *ngIf="( busTimes$ | async ) as busTimes">
+  <span>
+    Next Bus: {{ busTimes.st64th.prdctdn }} minutes
+    <span *ngIf="!busTimes.st64th.vid"> (scheduled) </span>
+  </span>
+  <mat-icon *ngIf="busTimes.st64th.vid != busTimes.st87th.vid">speed</mat-icon>
+</div>

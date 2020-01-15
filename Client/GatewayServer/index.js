@@ -63,7 +63,7 @@ app.use( cors( ) )
 
            const key  = `key=${process.env.mctsKey}`;
            const rte  = 'rt=GOL';
-           const stop = 'stpid=582';
+           const stop = 'stpid=582,2974';
            const fmt  = 'format=json';
            const url  = `http://realtime.ridemcts.com/bustime/api/v3/getpredictions?${key}&${rte}&${stop}&${fmt}`;
 
