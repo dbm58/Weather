@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import { BustimeService } from './bustime.service';
 
-const ENDPOINT: string = 'bustime';
+const ENDPOINT: string = 'bus';
 
 @Controller( ENDPOINT )
 export class BustimeController

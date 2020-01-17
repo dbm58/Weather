@@ -1,13 +1,22 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ForecastModule } from './forecast/forecast.module';
-import { BustimeModule } from './bustime/bustime.module';
-import { TrashModule } from './trash/trash.module';
+import { Module }         from '@nestjs/common';
 
-@Module({
-  imports: [ForecastModule, BustimeModule, TrashModule],
-  controllers: [AppController],
-  providers: [AppService],
-})
-export class AppModule {}
+import { AppController }  from './app.controller';
+import { AppService }     from './app.service';
+import { BustimeModule }  from './bustime/bustime.module';
+import { ForecastModule } from './forecast/forecast.module';
+import { KillModule }     from './kill/kill.module';
+import { TrashModule }    from './trash/trash.module';
+
+@Module(
+         {
+           imports:     [
+                          BustimeModule,
+                          ForecastModule,
+                          KillModule,
+                          TrashModule,
+                        ],
+           controllers: [ AppController ],
+           providers:   [ AppService ],
+         }
+       )
+export class AppModule { }

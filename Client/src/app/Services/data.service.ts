@@ -49,6 +49,6 @@ export class DataService
 
   getTrashDay( )
   {
-    return this.http.get( 'http://localhost:3002/trash' );
+    return this.http.get( 'http://localhost:3000/trash' );
   }
 }

@@ -23,6 +23,13 @@ app.use( cors( ) )
            res.send( 'Hello world!' );
          }
        )
+   .get( '/kill',
+         ( req, res ) =>
+         {
+           res.send( 'Shutting down...' );
+           process.exit( 2 );
+         }
+       )
    .get( '/forecast',
          ( req, res ) =>
          {
