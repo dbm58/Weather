@@ -1,22 +1,23 @@
-img
+:host
 {
-  position:  absolute;
-  top:       50%;
-  left:      50%;
-  transform: translate(-50%, -50%);
+  height:          100%;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
 }
 
-img.base
+a
 {
-  z-index:   0;
+  display: inline-block;
+  width:  100%;
+  height: 100%;
 }
 
-img.overlay
+div
 {
-  z-index:   1;
-}
-
-img.dyn-overlay
-{
-  z-index:   99;
+  height:              100%;
+  width:               100%;
+  background-repeat:   no-repeat;
+  background-size:     contain;
+  background-position: center;
 }
