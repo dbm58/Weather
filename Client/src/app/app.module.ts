@@ -24,7 +24,6 @@ import { MaterialModule }             from './material/material.module';
 import { NavButtonComponent }         from './nav-button/nav-button.component';
 import { NextBusTileComponent }       from './next-bus-tile/next-bus-tile.component';
 import { NoaaMapComponent }           from './noaa-map/noaa-map.component';
-import { NoaaMapComponent }           from './noaa-map/noaa-map.component';
 import { NoaaUrlPipe }                from './Pipes/noaa-url.pipe';
 import { PrecipChartComponent }       from './charts/precip-chart/precip-chart.component';
 import { PrecipComponent }            from './precip/precip.component';
@@ -50,7 +49,6 @@ import { WindChartComponent }         from './charts/wind-chart/wind-chart.compo
     LightningMapComponent,
     NavButtonComponent,
     NextBusTileComponent,
-    NoaaMapComponent,
     NoaaMapComponent,
     NoaaUrlPipe,
     PrecipChartComponent,

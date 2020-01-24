@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  apiBaseUrl:          'http://localhost:3000',
+  lightningMapBaseUrl: 'http://map.blitzortung.org/index.php',
+  lightningMapLatLon:  '#6.5/44.542/-88.728',
+  noaaMapBaseUrl:      'https://radar.weather.gov/ridge/lite/',
+  busStopId:           '582',
+  alertBusStopId:      '2974',
 };
 
 /*

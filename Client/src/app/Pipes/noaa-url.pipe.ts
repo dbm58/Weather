@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { environment } from './../../environments/environment';
+
 @Pipe(
        {
          name: 'noaaUrl'
@@ -9,6 +11,6 @@ export class NoaaUrlPipe implements PipeTransform
 {
   transform( config ) : string
   {
-    return `url(https://radar.weather.gov/ridge/lite/${config.mapUrl}?timestamp=${Date.now( )})`;
+    return `url(${environment.noaaMapBaseUrl}${config.mapUrl}?timestamp=${config.timestamp})`;
   }
 }

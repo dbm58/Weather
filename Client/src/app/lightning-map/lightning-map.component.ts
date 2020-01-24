@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-@Component({
-  selector: 'app-lightning-map',
-  templateUrl: './lightning-map.component.html',
-  styleUrls: ['./lightning-map.component.css']
-})
-export class LightningMapComponent implements OnInit
+import { environment } from './../../environments/environment';
+
+@Component(
+            {
+              selector:    'app-lightning-map',
+              templateUrl: './lightning-map.component.html',
+              styleUrls:   ['./lightning-map.component.css']
+            }
+          )
+export class LightningMapComponent
 {
   //  Build up the URL here, instead of in the <iframe>.  This makes it easier
   //  to play with the parameters.
-  url: string = "http://map.blitzortung.org/index.php"
+  url: string = environment.lightningMapBaseUrl
                 + "?interactive=0"
                 + "&NavigationControl=0"
                 + "&FullScreenControl=0"
@@ -23,12 +27,10 @@ export class LightningMapComponent implements OnInit
                 + "&MapStyle=2"
                 + "&MapStyleRangeValue=10"
                 + "&Advertisment=0"
-                + "#6.5/44.542/-88.728"
+                + environment.lightningMapLatLon
                 ;
 
-  constructor(private domSanitizer: DomSanitizer) { }
-
-  ngOnInit() { }
+  constructor( private domSanitizer: DomSanitizer ) { }
 
   getUrl( ): SafeResourceUrl
   {

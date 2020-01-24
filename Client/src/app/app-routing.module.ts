@@ -11,7 +11,6 @@ import { Home2Component }        from './home2/home2.component';
 import { InfoComponent }         from './info/info.component';
 import { LightningMapComponent } from './lightning-map/lightning-map.component';
 import { NoaaMapComponent }      from './noaa-map/noaa-map.component';
-import { NoaaMapComponent }      from './noaa-map/noaa-map.component';
 import { PrecipComponent }       from './precip/precip.component';
 
 const routes: Routes =
