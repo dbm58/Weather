@@ -8,6 +8,7 @@ a
 img
 {
   height:        100%;
+  max-height:    96vh;
   width:         auto;
   border-radius: 10px;
   border:        2px solid black;
