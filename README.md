@@ -34,10 +34,41 @@ npm install
 cd ../Client
 npm install
 ```
+
+## Configuration
 Create a file in /etc/profile.d (I called mine weather.sh), and set the API keys:
 ```
 export darkSkyKey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 export mctsKey=XXXXXXXXXXXXXXXXXXXXXXXXX
 export openWeatherKey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+export climacellKey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
-See the Startup section (above) to get it running
+
+Change the values in /Server/.env to reflect your location and other prefrences:
+```
+PORT=3000
+weather-noaa-map-url=this is a test
+lat=43.044
+lon=-88.002
+```
+
+Change the values in /Client/src/environments/environment.ts as needed:
+```
+export const environment = {
+  production: false,
+
+  apiBaseUrl:          'http://localhost:3000',
+  apiPort:             '3000',
+  //  Set the following is the api is running on another machine
+  apiHost:             null,
+  lightningMapBaseUrl: 'http://map.blitzortung.org/index.php',
+  lightningMapLatLon:  '#6.5/44.542/-88.728',
+  noaaMapBaseUrl:      'https://radar.weather.gov/ridge/lite/',
+  busStopId:           '582',
+  alertBusStopId:      '2974',
+
+  //  for forecasts
+  lat:                 '43.044',
+  lon:                 '-88.002',
+};
+```
