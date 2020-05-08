@@ -11,6 +11,6 @@ export class NoaaUrlPipe implements PipeTransform
 {
   transform( config ) : string
   {
-    return `url(${environment.noaaMapBaseUrl}${config.mapUrl}?timestamp=${config.timestamp})`;
+    return `${environment.noaaMapBaseUrl}${config.mapUrl}?timestamp=${config.timestamp}`;
   }
 }
