@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component }   from '@angular/core';
 
-import { DataService }       from '../Services/data.service';
+import { DataService } from '../Services/data.service';
 
 @Component(
             {
@@ -15,3 +15,4 @@ export class Home2Component
 
   private readonly forecast$ = this.dataService.getForecast( );
 }
+

@@ -16,7 +16,16 @@ import { environment } from './../../environments/environment';
            )
 export class DataService
 {
-  constructor( private http: HttpClient ) { }
+  apiBaseUrl = '';
+
+  constructor( private http: HttpClient )
+  {
+    var hostname    = environment.apiHost || window.location.hostname;
+    var port        = environment.apiPort;
+    this.apiBaseUrl = `http://${hostname}:${port}`;
+
+    console.log( 'baseUrl = ' + this.apiBaseUrl );
+  }
 
   //  Should this be moved to the api code?  I'm thinking probably
   getBusTimes( )
@@ -24,7 +33,7 @@ export class DataService
     let busStop = environment.busStopId;
     let alertBusStop = environment.alertBusStopId;
 
-    return this.http.get( `${environment.apiBaseUrl}/bus` )
+    return this.http.get( `${this.apiBaseUrl}/bus` )
                     .pipe(
                            map(
                                 d =>
@@ -49,11 +58,11 @@ export class DataService
 
   getForecast( )
   {
-    return this.http.get( `${environment.apiBaseUrl}/forecast` );
+    return this.http.get( `${this.apiBaseUrl}/forecast` );
   }
 
   getTrashDay( )
   {
-    return this.http.get( `${environment.apiBaseUrl}/trash` );
+    return this.http.get( `${this.apiBaseUrl}/trash` );
   }
 }

@@ -6,11 +6,18 @@ export const environment = {
   production: false,
 
   apiBaseUrl:          'http://localhost:3000',
+  apiPort:             '3000',
+  //  Set the following is the api is running on another machine
+  apiHost:             null,
   lightningMapBaseUrl: 'http://map.blitzortung.org/index.php',
   lightningMapLatLon:  '#6.5/44.542/-88.728',
   noaaMapBaseUrl:      'https://radar.weather.gov/ridge/lite/',
   busStopId:           '582',
   alertBusStopId:      '2974',
+
+  //  for forecasts
+  lat:                 '43.044',
+  lon:                 '-88.002',
 };
 
 /*

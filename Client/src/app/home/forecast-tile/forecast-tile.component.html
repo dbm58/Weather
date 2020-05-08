@@ -4,9 +4,9 @@
      >
     <div class="temp-summary">
       <span class="temp">{{conditions.temperature | number:'1.0-0'}}&#176;</span>
-      <span matTooltip="{{forecast.summary}}"
+      <span matTooltip="{{conditions.summary}}"
             matTooltipPosition="above"
-            [ngClass]="['icon', 'wi', 'wi-dark-sky-' + conditions.icon]"></span>
+            [ngClass]="['icon', 'wi', conditions.iconClass]"></span>
     </div>
     <div *ngIf="conditions.apparentTemperature != conditions.temperature"
          class="feels-like"
@@ -16,13 +16,13 @@
     <div class="wind">
       Wind {{conditions.windSpeed | number:'1.0-0'}}
       <span [ngClass]="['wi', 'wi-wind', 'towards-' + conditions.windBearing + '-deg']"> </span>
-      Gusts {{conditions.windGust | number:'1.0-0'}}
+      <span *ngIf="conditions.windGust"> Gusts {{conditions.windGust | number:'1.0-0'}}</span>
     </div>
     <div class="temp-min-max">
       {{forecast.temperatureLow | number:'1.0-0'}}&#176; - 
       {{forecast.temperatureHigh | number:'1.0-0'}}&#176;
     </div>
-    <div class="precip wi {{forecast.precipType | conditionIcon}}"
+    <div *ngIf="forecast.precipProbability" class="precip wi {{forecast.precipType | conditionIcon}}"
          matTooltip="{{forecast.precipType | titlecase}}"
          >
       {{forecast.precipProbability * 100 | number:'1.0-0'}}%

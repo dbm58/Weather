@@ -5,7 +5,7 @@
     <div class="day">{{forecast.time | amFromUnix | amDateFormat: 'dddd'}}</div>
     <div matTooltip="{{forecast.summary}}"
          matTooltipPosition="above"
-         [ngClass]="['wi', 'wi-dark-sky-' + forecast.icon]"></div>
+         [ngClass]="['wi', forecast.iconClass]"></div>
     <div class="temp">
       {{forecast.temperatureLow | number:'1.0-0'}}&#176; - 
       {{forecast.temperatureHigh | number:'1.0-0'}}&#176;
@@ -13,9 +13,10 @@
     <div class="wind">
       Wind {{forecast.windSpeed | number:'1.0-0'}}
       <span [ngClass]="['wi', 'wi-wind', 'towards-' + forecast.windBearing + '-deg']"> </span>
-      Gusts {{forecast.windGust | number:'1.0-0'}}
+      <span *ngIf="forecast.windGust">Gusts {{forecast.windGust | number:'1.0-0'}}</span>
     </div>
-    <div class="precip wi {{forecast.precipType | conditionIcon}}"
+    <div *ngIf="forecast.precipProbability"
+	 class="precip wi {{forecast.precipType | conditionIcon}}"
          matTooltip="{{forecast.precipType | titlecase}}"
          matTooltipPosition="above"
          >

@@ -7,6 +7,9 @@ import {
 
 import { ForecastController } from './forecast.controller';
 import { ForecastService }    from './forecast.service';
+import { OpenweatherService } from './openweather.service';
+import { ClimacellService } from './climacell.service';
+import { NoaaService }        from './noaa.service';
 
 @Module(
          {
@@ -18,7 +21,10 @@ import { ForecastService }    from './forecast.service';
                             provide:  Logger,
                             useClass: Logger,
                             scope:    Scope.TRANSIENT,
-                          }
+                          },
+                          OpenweatherService,
+                          NoaaService,
+                          ClimacellService
                         ]
          }
        )
