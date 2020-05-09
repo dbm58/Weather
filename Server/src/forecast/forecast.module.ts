@@ -9,6 +9,7 @@ import { ForecastController } from './forecast.controller';
 import { ForecastService }    from './forecast.service';
 import { OpenweatherService } from './openweather.service';
 import { ClimacellService } from './climacell.service';
+import { NullService } from './null.service';
 import { NoaaService }        from './noaa.service';
 
 @Module(
@@ -24,7 +25,8 @@ import { NoaaService }        from './noaa.service';
                           },
                           OpenweatherService,
                           NoaaService,
-                          ClimacellService
+                          ClimacellService,
+                          NullService
                         ]
          }
        )

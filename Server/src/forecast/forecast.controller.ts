@@ -4,6 +4,7 @@ import { Observable }              from 'rxjs';
 import { ForecastService }    from './forecast.service';
 import { OpenweatherService } from './openweather.service';
 import { NoaaService }        from './noaa.service';
+import { NullService }        from './null.service';
 
 const ENDPOINT: string = 'forecast';
 
@@ -15,6 +16,7 @@ export class ForecastController
                private readonly darkskyService:     ForecastService,
                private readonly openweatherService: OpenweatherService,
                private readonly noaaService:        NoaaService,
+               private readonly nullService:        NullService,
              )
   {
     this.logger.setContext( ForecastController.name );
@@ -24,7 +26,7 @@ export class ForecastController
   @Get( )
   async get( )
   {
-    return this.getNoaa( );
+    return this.getNull( );
   }
 
   @Get( 'darksky' )
@@ -49,5 +51,13 @@ export class ForecastController
     this.logger.log( `Handling /${ENDPOINT} request` );
 
     return this.noaaService.get( );
+  }
+
+  @Get( 'null' )
+  async getNull( )
+  {
+    this.logger.log( `Handling /${ENDPOINT} request` );
+
+    return this.nullService.get( );
   }
 }

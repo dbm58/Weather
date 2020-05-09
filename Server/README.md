@@ -73,3 +73,13 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+-------------------------------------------------------------------
+
+if you install nest cli locally, the 'nest' command won't be available after the next reboot.
+
+add the following alias:
+
+alias nest=/home/pi/Weather/Server/node_modules/@nestjs/cli/bin/nest.js
+
+use 'nest generate --flat service <name>' to create a service in the current directory.

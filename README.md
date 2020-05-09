@@ -72,3 +72,19 @@ export const environment = {
   lon:                 '-88.002',
 };
 ```
+Set up the servers to run automatically when booted.  This is done by adding an entry to crontab.  Run:
+```
+crontab -e
+```
+then add the following line in the editor that pops up:
+```
+@reboot /home/pi/Weather/start-servers.sh
+```
+
+Set up the browser to run automatically when LXDE (the default GUI on the RPi) runs:
+1.  cd ~/.config/lxsession/LXDE-pi
+1.  if the above directory doesn't exist, create it, and copy /etc/xdg/lxsession/LXDE-pi/autostart into it.
+1.  edit autostart, and add the following:
+```
+@/home/pi/Weather/start-client.sh
+```
