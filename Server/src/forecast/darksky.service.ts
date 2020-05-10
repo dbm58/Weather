@@ -6,29 +6,34 @@ import {
 import { map } from 'rxjs/operators';
 
 @Injectable( )
-export class ForecastService
+export class DarkskyService
 {
   constructor(
                private readonly logger:      Logger,
                private readonly httpService: HttpService,
              )
   {
-    logger.setContext( ForecastService.name );
+    logger.setContext( DarkskyService.name );
   }
 
   get( )
   {
     this.logger.log( 'Making REST request to DarkSky' );
 
-    const lat = '43.044';
-    const lon = '-88.002';
     const key = process.env.darkSkyKey;
-    const url = `https://api.darksky.net/forecast/${key}/${lat},${lon}`;
+    const url = `https://api.darksky.net/forecast/${key}/${process.env.LAT},${process.env.LON}`;
 
     return this.httpService
                .get( url )
                .pipe(
                       map( response => response.data ),
+                      map(
+                           response =>
+                           {
+                             response.provider = 'darksky';
+                             return response;
+                           }
+                         ),
                     );
   }
 }

@@ -17,6 +17,7 @@ export class NullService
   get( )
   {
     return {
+             'provider':  'null',
              'latitude':  '0',
              'longitude': '0',
              'timezone':  '0',

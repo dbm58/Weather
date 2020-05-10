@@ -89,9 +89,6 @@ export class NoaaService
   {
     this.logger.log( 'Making REST request to NOAA' );
 
-    const lat  = '43.044';
-    const lon  = '-88.002';
-    const key  = process.env.openWeatherKey;
     const url  = 'https://api.weather.gov/stations/KMKE/observations/latest';
     const url2 = 'https://api.weather.gov/gridpoints/MKX/84,64';
 
@@ -105,6 +102,7 @@ export class NoaaService
                     map( response => 
                          (
                            {
+                             'provider': 'noaa',
                              'currently': this.cvtCurrent( response[0] ),
                              'daily':     this.cvtDaily  ( response[1] ),
                            }
@@ -119,6 +117,7 @@ export class NoaaService
                       map( response =>
                            (
                              {
+                               'provider': 'noaa',
                                'daily':
                                {
                                  'data':

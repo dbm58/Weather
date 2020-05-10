@@ -1,5 +1,7 @@
 import { Controller, Get, Logger } from '@nestjs/common';
 
+import * as dotenv from 'dotenv';
+
 const ENDPOINT: string = 'config';
 
 @Controller( ENDPOINT )
@@ -16,10 +18,8 @@ export class ConfigController
   {
     this.logger.log( `Handling /${ENDPOINT} request` );
 
-    let config = 
-      {
-        noaaMapUrl: process.env[ "weather-noaa-map-url" ] || 'testing'
-      };
-    return config;
+    let cfg = dotenv.config( );
+
+    return cfg;
   }
 }

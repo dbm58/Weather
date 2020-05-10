@@ -6,18 +6,20 @@ import {
        } from '@nestjs/common';
 
 import { ForecastController } from './forecast.controller';
-import { ForecastService }    from './forecast.service';
+
+import { ClimacellService }   from './climacell.service';
+import { DarkskyService }     from './darksky.service';
 import { OpenweatherService } from './openweather.service';
-import { ClimacellService } from './climacell.service';
-import { NullService } from './null.service';
 import { NoaaService }        from './noaa.service';
+import { NullService }        from './null.service';
 
 @Module(
          {
            controllers: [ ForecastController ],
            imports:     [ HttpModule ],
            providers:   [
-                          ForecastService,
+                          ClimacellService,
+                          DarkskyService,
                           {
                             provide:  Logger,
                             useClass: Logger,
@@ -25,8 +27,7 @@ import { NoaaService }        from './noaa.service';
                           },
                           OpenweatherService,
                           NoaaService,
-                          ClimacellService,
-                          NullService
+                          NullService,
                         ]
          }
        )

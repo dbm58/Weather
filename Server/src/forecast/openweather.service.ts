@@ -38,10 +38,8 @@ export class OpenweatherService
   {
     this.logger.log( 'Making REST request to OpenWeather' );
 
-    const lat = '43.044';
-    const lon = '-88.002';
     const key = process.env.openWeatherKey;
-    const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}&units=imperial`;
+    const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${process.env.LAT}&lon=${process.env.LON}&appid=${key}&units=imperial`;
 
     return this.httpService
                .get( url )
@@ -50,6 +48,7 @@ export class OpenweatherService
                       map( response =>
                            (
                              {
+                               'provider':  'openweather',
                                'latitude':  response.lat,
                                'longitude': response.lon,
                                'timezone':  response.timezone,

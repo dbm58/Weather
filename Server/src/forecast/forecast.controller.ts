@@ -1,7 +1,8 @@
 import { Controller, Get, Logger } from '@nestjs/common';
 import { Observable }              from 'rxjs';
 
-import { ForecastService }    from './forecast.service';
+import { ClimacellService }   from './climacell.service';
+import { DarkskyService }     from './darksky.service';
 import { OpenweatherService } from './openweather.service';
 import { NoaaService }        from './noaa.service';
 import { NullService }        from './null.service';
@@ -11,9 +12,12 @@ const ENDPOINT: string = 'forecast';
 @Controller( ENDPOINT )
 export class ForecastController
 {
+  provider;
+
   constructor(
                private readonly logger:             Logger,
-               private readonly darkskyService:     ForecastService,
+               private readonly climacellService:   ClimacellService,
+               private readonly darkskyService:     DarkskyService,
                private readonly openweatherService: OpenweatherService,
                private readonly noaaService:        NoaaService,
                private readonly nullService:        NullService,
@@ -21,12 +25,34 @@ export class ForecastController
   {
     this.logger.setContext( ForecastController.name );
     this.logger.log( 'Loading...' );
+
+    switch( process.env.PROVIDER )
+    {
+      case 'climacell':   this.provider = climacellService;   break;
+      case 'darksky':     this.provider = darkskyService;     break;
+      case 'openweather': this.provider = openweatherService; break;
+      case 'noaa':        this.provider = noaaService;        break;
+      case 'null':        this.provider = nullService;        break;
+    }
   }
+
+
+
 
   @Get( )
   async get( )
   {
-    return this.getNull( );
+    this.logger.log( `Handling /${ENDPOINT} request` );
+
+    return this.provider.get( );
+  }
+
+  @Get( 'climacell' )
+  async getClimacell( )
+  {
+    this.logger.log( `Handling /${ENDPOINT} request` );
+
+    return this.climacellService.get( );
   }
 
   @Get( 'darksky' )
