@@ -25,7 +25,8 @@
             ],
             "styles": [
               "src/weather-material-theme.scss",
-              "src/styles.css"
+              "src/styles.css",
+              "src/css/climacell-icons.css",
             ],
             "scripts": []
           },

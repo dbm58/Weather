@@ -13,7 +13,7 @@
     <div class="wind">
       Wind {{forecast.windSpeed | number:'1.0-0'}}
       <span [ngClass]="['wi', 'wi-wind', 'towards-' + forecast.windBearing + '-deg']"> </span>
-      <span *ngIf="forecast.windGust">Gusts {{forecast.windGust | number:'1.0-0'}}</span>
+      <span *ngIf="forecast.windGust"> Gusts {{forecast.windGust | number:'1.0-0'}}</span>
     </div>
     <div *ngIf="forecast.precipProbability"
 	 class="precip wi {{forecast.precipType | conditionIcon}}"

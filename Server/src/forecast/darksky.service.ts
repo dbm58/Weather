@@ -31,6 +31,9 @@ export class DarkskyService
                            response =>
                            {
                              response.provider = 'darksky';
+                             response.currently.iconClass = 'wi-dark-sky-' + response.currently.icon;
+                             response.daily.data.forEach( datum =>
+                                 datum.iconClass = 'wi-dark-sky-' + datum.icon );
                              return response;
                            }
                          ),
